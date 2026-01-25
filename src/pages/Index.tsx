@@ -1,13 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { SEO } from "@/components/SEO";
+import { Layout } from "@/components/layout";
+import {
+  HeroSection,
+  InvestmentThesis,
+  RegionsSection,
+  CapabilitiesSection,
+  ProcessSection,
+  CTASection,
+} from "@/components/home";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <Layout>
+      <SEO
+        title="Lingam Estate | Strategic Land Advisory"
+        description="Strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors. Thiruvannamalai, Kallakurichi, Villupuram, Sankarapuram."
+      />
+      <HeroSection />
+      <InvestmentThesis />
+      <RegionsSection />
+      <CapabilitiesSection />
+      <ProcessSection />
+      <CTASection />
+    </Layout>
   );
 };
 

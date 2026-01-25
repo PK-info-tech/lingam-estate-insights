@@ -1,0 +1,130 @@
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Layout } from "@/components/layout";
+import { SEO } from "@/components/SEO";
+import regionImage from "@/assets/region-thiruvannamalai.jpg";
+
+const regions = [
+  {
+    name: "Thiruvannamalai",
+    slug: "thiruvannamalai",
+    tagline: "Sacred geography meets industrial potential",
+    description:
+      "The spiritual capital of Tamil Nadu is emerging as a key logistics and manufacturing hub, benefiting from improved highway connectivity to Chennai and Bengaluru.",
+  },
+  {
+    name: "Kallakurichi",
+    slug: "kallakurichi",
+    tagline: "Untapped potential at compelling valuations",
+    description:
+      "A newly formed district with extensive agricultural land and emerging industrial zones. Early-stage opportunity for strategic investors.",
+  },
+  {
+    name: "Villupuram",
+    slug: "villupuram",
+    tagline: "Railway junction with Chennai connectivity",
+    description:
+      "Major railway hub with excellent connectivity to Chennai, Puducherry, and the southern districts. Positioned for warehousing and manufacturing growth.",
+  },
+  {
+    name: "Sankarapuram",
+    slug: "sankarapuram",
+    tagline: "Infrastructure development underway",
+    description:
+      "Emerging taluk with significant government infrastructure investments. Early-stage opportunity for patient, long-term capital.",
+  },
+];
+
+const RegionsIndex = () => {
+  return (
+    <Layout>
+      <SEO
+        title="Regions"
+        description="Explore strategic investment regions in Tamil Nadu: Thiruvannamalai, Kallakurichi, Villupuram, and Sankarapuram."
+      />
+
+      {/* Hero */}
+      <section className="pt-32 pb-20 bg-background">
+        <div className="container-luxury">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl"
+          >
+            <p className="caption text-muted-foreground mb-4">Regions</p>
+            <div className="divider-luxury mb-8" />
+            <h1 className="heading-primary text-foreground mb-8">
+              Strategic corridors in Tamil Nadu's growth belt
+            </h1>
+            <p className="body-large text-foreground/70">
+              Four districts positioned at the intersection of infrastructure
+              development, industrial policy, and long-term appreciation potential.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Image */}
+      <section className="pb-20">
+        <div className="container-luxury">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="aspect-hero overflow-hidden"
+          >
+            <img
+              src={regionImage}
+              alt="Tamil Nadu countryside"
+              className="img-cover"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Regions List */}
+      <section className="section-padding-sm bg-secondary/30">
+        <div className="container-luxury">
+          <div className="space-y-px">
+            {regions.map((region, index) => (
+              <motion.div
+                key={region.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+              >
+                <Link
+                  to={`/regions/${region.slug}`}
+                  className="block bg-background p-8 md:p-12 group hover:bg-accent transition-colors duration-300"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">
+                    <div className="md:col-span-4">
+                      <h2 className="font-display text-3xl md:text-4xl text-foreground group-hover:text-primary transition-colors duration-300">
+                        {region.name}
+                      </h2>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        {region.tagline}
+                      </p>
+                    </div>
+                    <div className="md:col-span-6">
+                      <p className="text-foreground/60 leading-relaxed">
+                        {region.description}
+                      </p>
+                    </div>
+                    <div className="md:col-span-2 flex justify-end">
+                      <ArrowRight className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all duration-300" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default RegionsIndex;

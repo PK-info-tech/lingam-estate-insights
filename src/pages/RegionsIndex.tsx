@@ -1,42 +1,32 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import regionImage from "@/assets/region-thiruvannamalai.jpg";
 
-const regions = [
-  {
-    name: "Thiruvannamalai",
-    slug: "thiruvannamalai",
-    tagline: "Sacred geography meets industrial potential",
-    description:
-      "The spiritual capital of Tamil Nadu is emerging as a key logistics and manufacturing hub, benefiting from improved highway connectivity to Chennai and Bengaluru.",
-  },
-  {
-    name: "Kallakurichi",
-    slug: "kallakurichi",
-    tagline: "Untapped potential at compelling valuations",
-    description:
-      "A newly formed district with extensive agricultural land and emerging industrial zones. Early-stage opportunity for strategic investors.",
-  },
-  {
-    name: "Villupuram",
-    slug: "villupuram",
-    tagline: "Railway junction with Chennai connectivity",
-    description:
-      "Major railway hub with excellent connectivity to Chennai, Puducherry, and the southern districts. Positioned for warehousing and manufacturing growth.",
-  },
-  {
-    name: "Sankarapuram",
-    slug: "sankarapuram",
-    tagline: "Infrastructure development underway",
-    description:
-      "Emerging taluk with significant government infrastructure investments. Early-stage opportunity for patient, long-term capital.",
-  },
-];
-
 const RegionsIndex = () => {
+  const { t } = useTranslation();
+  
+  const regions = [
+    {
+      name: t("regions.thiruvannamalai.name"),
+      slug: "thiruvannamalai",
+    },
+    {
+      name: t("regions.kallakurichi.name"),
+      slug: "kallakurichi",
+    },
+    {
+      name: t("regions.villupuram.name"),
+      slug: "villupuram",
+    },
+    {
+      name: t("regions.sankarapuram.name"),
+      slug: "sankarapuram",
+    },
+  ];
   return (
     <Layout>
       <SEO
@@ -53,14 +43,13 @@ const RegionsIndex = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <p className="caption text-muted-foreground mb-4">Regions</p>
+            <p className="caption text-muted-foreground mb-4">{t("regions.caption")}</p>
             <div className="divider-luxury mb-8" />
             <h1 className="heading-primary text-foreground mb-8">
-              Strategic corridors in Tamil Nadu's growth belt
+              {t("regions.pageTitle")}
             </h1>
             <p className="body-large text-foreground/70">
-              Four districts positioned at the intersection of infrastructure
-              development, industrial policy, and long-term appreciation potential.
+              {t("regions.pageSubtitle")}
             </p>
           </motion.div>
         </div>
@@ -105,12 +94,12 @@ const RegionsIndex = () => {
                         {region.name}
                       </h2>
                       <p className="text-sm text-muted-foreground mt-2">
-                        {region.tagline}
+                        {t(`regions.list.${region.slug}.tagline`)}
                       </p>
                     </div>
                     <div className="md:col-span-6">
                       <p className="text-foreground/60 leading-relaxed">
-                        {region.description}
+                        {t(`regions.list.${region.slug}.description`)}
                       </p>
                     </div>
                     <div className="md:col-span-2 flex justify-end">

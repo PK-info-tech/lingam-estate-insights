@@ -1,32 +1,30 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 
-const values = [
-  {
-    title: "Long-term Perspective",
-    description:
-      "We work with investors who understand that meaningful returns in land require patience and strategic vision.",
-  },
-  {
-    title: "On-Ground Expertise",
-    description:
-      "Our knowledge comes from years of presence in these districts—relationships, insights, and access that cannot be replicated remotely.",
-  },
-  {
-    title: "Rigorous Due Diligence",
-    description:
-      "Every transaction undergoes comprehensive title verification, legal audit, and physical survey before we recommend acquisition.",
-  },
-  {
-    title: "Aligned Interests",
-    description:
-      "We succeed when our clients succeed. Our advisory model ensures our incentives are aligned with long-term investment outcomes.",
-  },
-];
-
 const About = () => {
+  const { t } = useTranslation();
+  
+  const values = [
+    {
+      title: t("about.values.longTerm.title"),
+      description: t("about.values.longTerm.description"),
+    },
+    {
+      title: t("about.values.expertise.title"),
+      description: t("about.values.expertise.description"),
+    },
+    {
+      title: t("about.values.diligence.title"),
+      description: t("about.values.diligence.description"),
+    },
+    {
+      title: t("about.values.aligned.title"),
+      description: t("about.values.aligned.description"),
+    },
+  ];
   return (
     <Layout>
       <SEO
@@ -43,17 +41,13 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <p className="caption text-muted-foreground mb-4">About</p>
+            <p className="caption text-muted-foreground mb-4">{t("about.caption")}</p>
             <div className="divider-luxury mb-8" />
             <h1 className="heading-primary text-foreground mb-8">
-              Strategic land advisory for long-term investors
+              {t("about.pageTitle")}
             </h1>
             <p className="body-large text-foreground/70">
-              Lingam Estate provides end-to-end advisory services for land
-              acquisition in Tamil Nadu's emerging industrial and infrastructure
-              corridors. We work with family offices, institutions, and strategic
-              investors seeking exposure to India's growth story through
-              investment-grade land.
+              {t("about.pageDescription")}
             </p>
           </motion.div>
         </div>
@@ -69,7 +63,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="lg:col-span-4"
             >
-              <h2 className="heading-tertiary text-foreground">Our Philosophy</h2>
+              <h2 className="heading-tertiary text-foreground">{t("about.philosophy.title")}</h2>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -77,26 +71,9 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-8 space-y-6 text-foreground/70"
             >
-              <p>
-                Land investment in India is often perceived as opaque,
-                fragmented, and fraught with risk. Our mission is to bring
-                institutional rigor to this asset class—enabling sophisticated
-                investors to access opportunities that were previously available
-                only to those with deep local networks.
-              </p>
-              <p>
-                We focus exclusively on Tamil Nadu's western corridors: a region
-                we know intimately, where infrastructure investment is creating
-                new economic geographies. Our deep presence in these districts
-                allows us to identify opportunities, navigate complexities, and
-                execute transactions with confidence.
-              </p>
-              <p>
-                We don't operate as brokers seeking quick transactions. We build
-                long-term relationships with investors who share our perspective
-                on land as a strategic asset class requiring patience, expertise,
-                and careful stewardship.
-              </p>
+              <p>{t("about.philosophy.p1")}</p>
+              <p>{t("about.philosophy.p2")}</p>
+              <p>{t("about.philosophy.p3")}</p>
             </motion.div>
           </div>
         </div>
@@ -111,7 +88,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h2 className="heading-secondary text-foreground">What We Stand For</h2>
+            <h2 className="heading-secondary text-foreground">{t("about.values.title")}</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
@@ -143,14 +120,13 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="heading-secondary text-white mb-8">
-              Ready to explore?
+              {t("about.cta.title")}
             </h2>
             <p className="body-base text-white/60 mb-12 max-w-lg mx-auto">
-              Let's discuss how we can help you navigate strategic land
-              investment in Tamil Nadu.
+              {t("about.cta.subtitle")}
             </p>
             <Link to="/contact" className="btn-primary">
-              Request Conversation
+              {t("about.cta.button")}
             </Link>
           </motion.div>
         </div>

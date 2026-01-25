@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 
@@ -113,6 +114,7 @@ const articlesContent: Record<string, ArticleContent> = {
 };
 
 const InsightDetail = () => {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const article = slug ? articlesContent[slug] : null;
 
@@ -130,9 +132,9 @@ const InsightDetail = () => {
         <SEO title="Article Not Found" description="The requested article could not be found." />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="heading-secondary mb-4">Article not found</h1>
+            <h1 className="heading-secondary mb-4">{t("insights.detail.notFound.title")}</h1>
             <Link to="/insights" className="text-primary hover:underline">
-              View all insights
+              {t("insights.detail.notFound.link")}
             </Link>
           </div>
         </div>
@@ -162,11 +164,11 @@ const InsightDetail = () => {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
-              All Insights
+              {t("insights.detail.back")}
             </Link>
 
             <div className="flex items-center gap-4 mb-6">
-              <span className="caption text-primary">{article.category}</span>
+              <span className="caption text-primary">{t(`insights.articles.${slug}.category`)}</span>
               <span className="text-muted-foreground text-sm">·</span>
               <span className="text-muted-foreground text-sm">{article.readTime}</span>
             </div>
@@ -212,14 +214,14 @@ const InsightDetail = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="heading-tertiary text-foreground mb-6">
-              Continue exploring
+              {t("insights.detail.continue.title")}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/insights" className="btn-outline">
-                More Insights
+                {t("insights.detail.continue.more")}
               </Link>
               <Link to="/contact" className="btn-primary">
-                Request Conversation
+                {t("insights.detail.continue.contact")}
               </Link>
             </div>
           </motion.div>

@@ -1,57 +1,40 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 
 interface InsightArticle {
   slug: string;
-  title: string;
-  excerpt: string;
   date: string;
-  category: string;
   readTime: string;
 }
 
-const articles: InsightArticle[] = [
-  {
-    slug: "chennai-bengaluru-corridor-impact",
-    title: "How the Chennai-Bengaluru Industrial Corridor Will Transform Land Values",
-    excerpt:
-      "An analysis of the infrastructure investments shaping the growth trajectory of Tamil Nadu's western districts and their impact on strategic land acquisition.",
-    date: "2025-01-15",
-    category: "Infrastructure",
-    readTime: "8 min read",
-  },
-  {
-    slug: "agricultural-land-conversion-guide",
-    title: "Understanding Agricultural Land Conversion in Tamil Nadu",
-    excerpt:
-      "A comprehensive guide to the legal, procedural, and strategic considerations when converting agricultural land for industrial or commercial use.",
-    date: "2024-12-20",
-    category: "Legal",
-    readTime: "12 min read",
-  },
-  {
-    slug: "logistics-warehousing-opportunity",
-    title: "The Logistics and Warehousing Opportunity in South India",
-    excerpt:
-      "Why institutional investors are increasingly focused on land acquisition for warehousing and logistics development in Tamil Nadu's emerging corridors.",
-    date: "2024-11-28",
-    category: "Investment",
-    readTime: "10 min read",
-  },
-  {
-    slug: "title-verification-essentials",
-    title: "Essential Title Verification Steps for Land Acquisition",
-    excerpt:
-      "A detailed walkthrough of the due diligence process required to ensure clean title and avoid common pitfalls in rural land transactions.",
-    date: "2024-10-15",
-    category: "Due Diligence",
-    readTime: "15 min read",
-  },
-];
-
 const InsightsIndex = () => {
+  const { t } = useTranslation();
+  
+  const articles: InsightArticle[] = [
+    {
+      slug: "chennai-bengaluru-corridor-impact",
+      date: "2025-01-15",
+      readTime: "8 min read",
+    },
+    {
+      slug: "agricultural-land-conversion-guide",
+      date: "2024-12-20",
+      readTime: "12 min read",
+    },
+    {
+      slug: "logistics-warehousing-opportunity",
+      date: "2024-11-28",
+      readTime: "10 min read",
+    },
+    {
+      slug: "title-verification-essentials",
+      date: "2024-10-15",
+      readTime: "15 min read",
+    },
+  ];
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -76,14 +59,13 @@ const InsightsIndex = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <p className="caption text-muted-foreground mb-4">Insights</p>
+            <p className="caption text-muted-foreground mb-4">{t("insights.caption")}</p>
             <div className="divider-luxury mb-8" />
             <h1 className="heading-primary text-foreground mb-8">
-              Perspectives on land and infrastructure investment
+              {t("insights.pageTitle")}
             </h1>
             <p className="body-large text-foreground/70">
-              Research, analysis, and strategic thinking on the dynamics shaping
-              Tamil Nadu's emerging investment corridors.
+              {t("insights.pageSubtitle")}
             </p>
           </motion.div>
         </div>
@@ -105,17 +87,17 @@ const InsightsIndex = () => {
                   className="block group"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="caption text-primary">{article.category}</span>
+                    <span className="caption text-primary">{t(`insights.articles.${article.slug}.category`)}</span>
                     <span className="text-muted-foreground text-sm">·</span>
                     <span className="text-muted-foreground text-sm">{article.readTime}</span>
                   </div>
 
                   <h2 className="font-display text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors duration-300 mb-4">
-                    {article.title}
+                    {t(`insights.articles.${article.slug}.title`)}
                   </h2>
 
                   <p className="text-foreground/60 leading-relaxed mb-4">
-                    {article.excerpt}
+                    {t(`insights.articles.${article.slug}.excerpt`)}
                   </p>
 
                   <time className="text-sm text-muted-foreground">

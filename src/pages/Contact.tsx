@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { Mail, MapPin } from "lucide-react";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -39,22 +41,20 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="caption text-muted-foreground mb-4">Contact</p>
+              <p className="caption text-muted-foreground mb-4">{t("contact.caption")}</p>
               <div className="divider-luxury mb-8" />
               <h1 className="heading-primary text-foreground mb-8">
-                Let's discuss your investment objectives
+                {t("contact.pageTitle")}
               </h1>
               <p className="body-large text-foreground/70 mb-12">
-                Whether you're exploring the region for the first time or ready
-                to execute on a specific requirement, we're here to help you
-                navigate the opportunity.
+                {t("contact.pageSubtitle")}
               </p>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <Mail className="w-5 h-5 text-primary mt-1" />
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Email</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t("contact.email")}</p>
                     <a
                       href="mailto:hello@lingamestate.com"
                       className="text-foreground hover:text-primary transition-colors"
@@ -67,11 +67,9 @@ const Contact = () => {
                 <div className="flex items-start gap-4">
                   <MapPin className="w-5 h-5 text-primary mt-1" />
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Office</p>
-                    <p className="text-foreground">
-                      Chennai, Tamil Nadu
-                      <br />
-                      India
+                    <p className="text-sm text-muted-foreground mb-1">{t("contact.office")}</p>
+                    <p className="text-foreground whitespace-pre-line">
+                      {t("contact.location")}
                     </p>
                   </div>
                 </div>
@@ -87,11 +85,10 @@ const Contact = () => {
               {isSubmitted ? (
                 <div className="bg-secondary/50 p-12 text-center">
                   <h2 className="heading-tertiary text-foreground mb-4">
-                    Thank you
+                    {t("contact.form.success.title")}
                   </h2>
                   <p className="text-foreground/70">
-                    We've received your message and will respond within 2 business
-                    days.
+                    {t("contact.form.success.message")}
                   </p>
                 </div>
               ) : (
@@ -101,7 +98,7 @@ const Contact = () => {
                       htmlFor="name"
                       className="block text-sm text-foreground mb-2"
                     >
-                      Name
+                      {t("contact.form.name")}
                     </label>
                     <input
                       type="text"
@@ -120,7 +117,7 @@ const Contact = () => {
                       htmlFor="email"
                       className="block text-sm text-foreground mb-2"
                     >
-                      Email
+                      {t("contact.form.email")}
                     </label>
                     <input
                       type="email"
@@ -139,7 +136,7 @@ const Contact = () => {
                       htmlFor="organization"
                       className="block text-sm text-foreground mb-2"
                     >
-                      Organization (optional)
+                      {t("contact.form.organization")}
                     </label>
                     <input
                       type="text"
@@ -160,7 +157,7 @@ const Contact = () => {
                       htmlFor="message"
                       className="block text-sm text-foreground mb-2"
                     >
-                      How can we help?
+                      {t("contact.form.message")}
                     </label>
                     <textarea
                       id="message"
@@ -179,7 +176,7 @@ const Contact = () => {
                     disabled={isSubmitting}
                     className="btn-primary w-full disabled:opacity-50"
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? t("contact.form.sending") : t("contact.form.submit")}
                   </button>
                 </form>
               )}

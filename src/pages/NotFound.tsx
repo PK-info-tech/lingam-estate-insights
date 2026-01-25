@@ -1,10 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 
 const NotFound = () => {
+  const { t } = useTranslation();
   const location = useLocation();
 
   useEffect(() => {
@@ -24,15 +26,15 @@ const NotFound = () => {
           transition={{ duration: 0.6 }}
           className="container-luxury text-center"
         >
-          <p className="caption text-muted-foreground mb-4">404</p>
+          <p className="caption text-muted-foreground mb-4">{t("notFound.code")}</p>
           <h1 className="heading-display text-foreground mb-8">
-            Page not found
+            {t("notFound.title")}
           </h1>
           <p className="body-large text-foreground/70 mb-12 max-w-md mx-auto">
-            The page you're looking for doesn't exist or has been moved.
+            {t("notFound.description")}
           </p>
           <Link to="/" className="btn-primary">
-            Return Home
+            {t("notFound.button")}
           </Link>
         </motion.div>
       </section>

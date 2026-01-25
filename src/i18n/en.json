@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "regions": "Regions",
+    "insights": "Insights",
+    "about": "About",
+    "contact": "Request Conversation"
+  },
+  "hero": {
+    "caption": "Strategic Land Advisory",
+    "title": "Investing in tomorrow's corridors",
+    "subtitle": "We identify and execute strategic land acquisitions in Tamil Nadu's emerging industrial and infrastructure growth belts.",
+    "cta": "Request Conversation",
+    "explore": "Explore Regions"
+  },
+  "thesis": {
+    "caption": "Investment Thesis",
+    "title": "The Thiruvannamalai Belt",
+    "description": "A sacred geography transforming into Tamil Nadu's next industrial corridor. The convergence of infrastructure development, industrial policy, and demographic shifts creates a compelling investment thesis.",
+    "point1": {
+      "title": "Infrastructure Momentum",
+      "description": "Chennai-Bengaluru Industrial Corridor, new highways, and railway connectivity unlocking landlocked regions."
+    },
+    "point2": {
+      "title": "Policy Tailwinds",
+      "description": "Tamil Nadu's industrial incentives and land-use policies favor early movers in emerging districts."
+    },
+    "point3": {
+      "title": "Demographic Dividend",
+      "description": "Young, skilled workforce seeking opportunities closer to home. Reduced migration, increased local capacity."
+    }
+  },
+  "regions": {
+    "caption": "Regions",
+    "title": "Four districts. One strategic vision.",
+    "thiruvannamalai": {
+      "name": "Thiruvannamalai",
+      "description": "Sacred geography meets industrial potential. The spiritual capital of Tamil Nadu is emerging as a logistics hub."
+    },
+    "kallakurichi": {
+      "name": "Kallakurichi",
+      "description": "Newly formed district with untapped agricultural and industrial land at compelling valuations."
+    },
+    "villupuram": {
+      "name": "Villupuram",
+      "description": "Key railway junction with excellent Chennai connectivity. Positioned for warehousing and manufacturing."
+    },
+    "sankarapuram": {
+      "name": "Sankarapuram",
+      "description": "Emerging taluk with infrastructure development underway. Early-stage opportunity for patient capital."
+    }
+  },
+  "capabilities": {
+    "caption": "Capabilities",
+    "title": "What can be built",
+    "subtitle": "Our focus regions are suited for diverse industrial and agricultural applications.",
+    "items": {
+      "industrial": "Industrial Parks",
+      "logistics": "Logistics & Warehousing",
+      "agri": "Agri-Processing",
+      "renewable": "Renewable Energy",
+      "residential": "Residential Townships",
+      "mixed": "Mixed-Use Development"
+    }
+  },
+  "process": {
+    "caption": "Process",
+    "title": "End-to-end execution",
+    "subtitle": "From identification to acquisition, we handle every aspect of land investment.",
+    "step1": {
+      "title": "Discovery",
+      "description": "Understanding your investment criteria, risk appetite, and timeline."
+    },
+    "step2": {
+      "title": "Research",
+      "description": "Comprehensive land identification, title verification, and due diligence."
+    },
+    "step3": {
+      "title": "Analysis",
+      "description": "Market valuation, growth potential assessment, and investment structuring."
+    },
+    "step4": {
+      "title": "Execution",
+      "description": "Negotiation, documentation, and seamless transaction management."
+    }
+  },
+  "cta": {
+    "title": "Ready to explore opportunities?",
+    "subtitle": "Schedule a confidential conversation with our advisory team.",
+    "button": "Request Conversation"
+  },
+  "footer": {
+    "description": "Strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors.",
+    "regions": "Regions",
+    "company": "Company",
+    "connect": "Connect",
+    "copyright": "© {{year}} Lingam Estate. All rights reserved.",
+    "tagline": "Investment advisory services"
+  },
+  "about": {
+    "caption": "About Us",
+    "title": "Patient capital. Local expertise.",
+    "description": "Lingam Estate is a strategic land advisory firm focused exclusively on Tamil Nadu's emerging growth corridors. We combine deep local knowledge with institutional-grade due diligence.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To facilitate informed land investments by providing comprehensive research, verified documentation, and end-to-end transaction support."
+    },
+    "approach": {
+      "title": "Our Approach",
+      "description": "We believe in patient capital. Our focus is on long-term value creation through strategic land positioning in infrastructure corridors."
+    }
+  },
+  "contact": {
+    "caption": "Contact",
+    "title": "Start a conversation",
+    "subtitle": "Whether you're exploring investment opportunities or seeking advisory services, we're here to help.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "message": "Your Message",
+      "submit": "Send Message"
+    }
+  },
+  "insights": {
+    "caption": "Insights",
+    "title": "Market perspectives",
+    "subtitle": "Research, analysis, and commentary on Tamil Nadu's land markets.",
+    "readMore": "Read Article"
+  }
+}

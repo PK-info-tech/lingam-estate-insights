@@ -1,9 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import architectureImage from "@/assets/abstract-architecture.jpg";
 
 export const CTASection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -17,21 +19,14 @@ export const CTASection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <p className="caption text-muted-foreground mb-4">Begin</p>
-            <div className="divider-luxury mb-8" />
             <h2 className="heading-secondary text-foreground mb-8 text-balance">
-              Every significant investment begins with a conversation.
+              {t("cta.title")}
             </h2>
             <p className="body-base text-foreground/70 mb-12 max-w-md">
-              Whether you're exploring the region for the first time or ready
-              to execute on a specific requirement, we're here to help you
-              navigate the opportunity.
+              {t("cta.subtitle")}
             </p>
-            <Link
-              to="/contact"
-              className="btn-primary"
-            >
-              Request Conversation
+            <Link to="/contact" className="btn-primary">
+              {t("cta.button")}
             </Link>
           </motion.div>
 

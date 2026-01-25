@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
-
-const footerLinks = {
-  regions: [
-    { label: "Thiruvannamalai", href: "/regions/thiruvannamalai" },
-    { label: "Kallakurichi", href: "/regions/kallakurichi" },
-    { label: "Villupuram", href: "/regions/villupuram" },
-    { label: "Sankarapuram", href: "/regions/sankarapuram" },
-  ],
-  company: [
-    { label: "About", href: "/about" },
-    { label: "Insights", href: "/insights" },
-    { label: "Contact", href: "/contact" },
-  ],
-};
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    regions: [
+      { labelKey: "regions.thiruvannamalai.name", href: "/regions/thiruvannamalai" },
+      { labelKey: "regions.kallakurichi.name", href: "/regions/kallakurichi" },
+      { labelKey: "regions.villupuram.name", href: "/regions/villupuram" },
+      { labelKey: "regions.sankarapuram.name", href: "/regions/sankarapuram" },
+    ],
+    company: [
+      { labelKey: "nav.about", href: "/about" },
+      { labelKey: "nav.insights", href: "/insights" },
+      { labelKey: "nav.contact", href: "/contact" },
+    ],
+  };
+
   return (
     <footer className="bg-charcoal text-white/80">
       <div className="container-luxury section-padding">
@@ -28,14 +31,13 @@ export const Footer = () => {
               Lingam Estate
             </Link>
             <p className="mt-6 text-white/60 max-w-sm leading-relaxed">
-              Strategic land advisory for industrial and infrastructure
-              investments in Tamil Nadu's emerging growth corridors.
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Regions */}
           <div className="md:col-span-3">
-            <h4 className="caption text-white/40 mb-6">Regions</h4>
+            <h4 className="caption text-white/40 mb-6">{t("footer.regions")}</h4>
             <ul className="space-y-3">
               {footerLinks.regions.map((link) => (
                 <li key={link.href}>
@@ -43,7 +45,7 @@ export const Footer = () => {
                     to={link.href}
                     className="text-white/70 hover:text-white transition-colors duration-300"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -52,7 +54,7 @@ export const Footer = () => {
 
           {/* Company */}
           <div className="md:col-span-2">
-            <h4 className="caption text-white/40 mb-6">Company</h4>
+            <h4 className="caption text-white/40 mb-6">{t("footer.company")}</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -60,7 +62,7 @@ export const Footer = () => {
                     to={link.href}
                     className="text-white/70 hover:text-white transition-colors duration-300"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -69,7 +71,7 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="md:col-span-2">
-            <h4 className="caption text-white/40 mb-6">Connect</h4>
+            <h4 className="caption text-white/40 mb-6">{t("footer.connect")}</h4>
             <a
               href="mailto:hello@lingamestate.com"
               className="text-white/70 hover:text-white transition-colors duration-300"
@@ -82,11 +84,9 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} Lingam Estate. All rights reserved.
+            {t("footer.copyright", { year: new Date().getFullYear() })}
           </p>
-          <p className="text-white/40 text-sm">
-            Investment advisory services
-          </p>
+          <p className="text-white/40 text-sm">{t("footer.tagline")}</p>
         </div>
       </div>
     </footer>

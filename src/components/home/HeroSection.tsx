@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import heroImage from "@/assets/hero-landscape.jpg";
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center">
       {/* Background Image */}
@@ -24,7 +27,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="caption text-white/60 mb-6"
           >
-            Strategic Land Advisory
+            {t("hero.caption")}
           </motion.p>
 
           <motion.h1
@@ -33,9 +36,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="heading-display text-white mb-8 text-balance"
           >
-            Investing in
-            <br />
-            tomorrow's corridors
+            {t("hero.title")}
           </motion.h1>
 
           <motion.p
@@ -44,8 +45,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="body-large text-white/80 mb-12 max-w-xl"
           >
-            We identify and execute strategic land acquisitions in Tamil Nadu's
-            emerging industrial and infrastructure growth belts.
+            {t("hero.subtitle")}
           </motion.p>
 
           <motion.div
@@ -58,13 +58,13 @@ export const HeroSection = () => {
               to="/contact"
               className="btn-luxury bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              Request Conversation
+              {t("hero.cta")}
             </Link>
             <Link
               to="/regions"
               className="btn-luxury border border-white/30 text-white hover:bg-white/10"
             >
-              Explore Regions
+              {t("hero.explore")}
             </Link>
           </motion.div>
         </div>

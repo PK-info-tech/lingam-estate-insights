@@ -1,35 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import industrialImage from "@/assets/industrial-potential.jpg";
 
-const capabilities = [
-  {
-    title: "Industrial Parks",
-    description: "Large-format land for manufacturing and processing units.",
-  },
-  {
-    title: "Agri-Processing",
-    description: "Sites near agricultural belts for food processing and cold storage.",
-  },
-  {
-    title: "Logistics & Warehousing",
-    description: "Highway-adjacent land for distribution and fulfillment centers.",
-  },
-  {
-    title: "Renewable Energy",
-    description: "Open land suitable for solar and wind energy installations.",
-  },
-  {
-    title: "Data Centers",
-    description: "Locations with power and connectivity infrastructure potential.",
-  },
-  {
-    title: "Integrated Townships",
-    description: "Master-planned developments near emerging industrial corridors.",
-  },
-];
+const capabilityKeys = ["industrial", "logistics", "agri", "renewable", "residential", "mixed"];
 
 export const CapabilitiesSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -60,24 +37,28 @@ export const CapabilitiesSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 lg:order-2"
           >
-            <p className="caption text-muted-foreground mb-4">Capabilities</p>
+            <p className="caption text-muted-foreground mb-4">{t("capabilities.caption")}</p>
             <div className="divider-luxury mb-8" />
-            <h2 className="heading-secondary text-foreground mb-12">
-              What can be built here
+            <h2 className="heading-secondary text-foreground mb-6">
+              {t("capabilities.title")}
             </h2>
+            <p className="text-foreground/60 mb-12">
+              {t("capabilities.subtitle")}
+            </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
-              {capabilities.map((item, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+              {capabilityKeys.map((key, index) => (
                 <motion.div
-                  key={item.title}
+                  key={key}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.05 }}
+                  className="flex items-center gap-3 py-3 border-b border-border"
                 >
-                  <h4 className="font-display text-lg text-foreground mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-foreground/60">{item.description}</p>
+                  <div className="w-2 h-2 rounded-full bg-primary" />
+                  <span className="text-foreground font-medium">
+                    {t(`capabilities.items.${key}`)}
+                  </span>
                 </motion.div>
               ))}
             </div>

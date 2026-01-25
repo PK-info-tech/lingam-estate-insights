@@ -4,6 +4,7 @@ import {
   HeroSection,
   InvestmentThesis,
   RegionsSection,
+  RegionHighlightsSection,
   CapabilitiesSection,
   ProcessSection,
   CTASection,
@@ -18,6 +19,7 @@ const Index = () => {
       />
       <HeroSection />
       <InvestmentThesis />
+      <RegionHighlightsSection />
       <RegionsSection />
       <CapabilitiesSection />
       <ProcessSection />

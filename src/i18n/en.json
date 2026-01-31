@@ -11,7 +11,8 @@
     "title": "Investing in tomorrow's corridors",
     "subtitle": "We identify and execute strategic land acquisitions in Tamil Nadu's emerging industrial and infrastructure growth belts.",
     "cta": "Request Conversation",
-    "explore": "Explore Regions"
+    "explore": "Explore Regions",
+    "searchLands": "Search Verified Lands"
   },
   "thesis": {
     "caption": "Investment Thesis",
@@ -411,5 +412,21 @@
     "ctaDescription": "Schedule a confidential conversation with our advisory team to discuss this opportunity in detail.",
     "cta": "Request Property Details",
     "callNow": "Call Now"
+  },
+  "comparison": {
+    "title": "Beyond Compare",
+    "subtitle": "Why choose Lingam Estate over traditional brokers and online portals",
+    "feature": "Feature",
+    "lingam": "Lingam Estate",
+    "localBroker": "Local Broker",
+    "onlinePortals": "Online Portals",
+    "features": {
+      "verifiedSeller": "Verified Seller",
+      "legalDiligence": "Legal Due Diligence",
+      "hniNri": "HNI / NRI Buyers",
+      "transparentPricing": "Transparent Pricing",
+      "endToEnd": "End-to-End Handling",
+      "postSale": "Post-sale Support"
+    }
   }
 }

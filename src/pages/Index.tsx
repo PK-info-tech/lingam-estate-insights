@@ -9,6 +9,7 @@ import {
   ProcessSection,
   CTASection,
 } from "@/components/home";
+import { BrokerComparison } from "@/components/lands";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       />
       <HeroSection />
       <InvestmentThesis />
+      <BrokerComparison variant="compact" />
       <RegionHighlightsSection />
       <RegionsSection />
       <CapabilitiesSection />

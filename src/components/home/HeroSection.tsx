@@ -55,16 +55,16 @@ export const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <Link
-              to="/contact"
+              to="/lands"
               className="btn-luxury bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              {t("hero.cta")}
+              {t("hero.searchLands")}
             </Link>
             <Link
-              to="/regions"
+              to="/contact"
               className="btn-luxury border border-white/30 text-white hover:bg-white/10"
             >
-              {t("hero.explore")}
+              {t("hero.cta")}
             </Link>
           </motion.div>
         </div>

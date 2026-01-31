@@ -1,5 +1,6 @@
 {
   "nav": {
+    "properties": "Properties",
     "regions": "Regions",
     "insights": "Insights",
     "about": "About",
@@ -126,5 +127,65 @@
     "title": "Market perspectives",
     "subtitle": "Research, analysis, and commentary on Tamil Nadu's land markets.",
     "readMore": "Read Article"
+  },
+  "properties": {
+    "caption": "Properties",
+    "title": "Investment-Grade Land Assets",
+    "subtitle": "A curated portfolio of verified land opportunities in Tamil Nadu's emerging growth corridors.",
+    "filterByRegion": "Filter by Region",
+    "filterByUseCase": "Filter by Use Case",
+    "filterByStatus": "Verification Status",
+    "noResults": "No properties match your criteria",
+    "resetFilters": "Reset Filters",
+    "showingCount": "Showing {{count}} of {{total}} properties"
+  },
+  "property": {
+    "overview": "Overview",
+    "useCases": "Best Use Cases",
+    "connectivity": "Connectivity & Market Access",
+    "map": "Location",
+    "gallery": "Gallery",
+    "progress": "Buyer Interest",
+    "region": "Region",
+    "area": "Land Area",
+    "listed": "Listed",
+    "notFound": "Property not found",
+    "backToCollection": "View All Properties",
+    "verification": {
+      "notVerified": "Verify on Demand",
+      "inProgress": "Verification in Progress",
+      "verified": "100% Verified",
+      "notVerifiedTooltip": "This property has not been verified yet. We will conduct full verification upon your request.",
+      "inProgressTooltip": "Our team is currently verifying title documents, encumbrances, and legal status.",
+      "verifiedTooltip": "This property has passed our comprehensive verification including title search, encumbrance check, and legal review."
+    },
+    "progressStages": {
+      "listed": "Listed",
+      "interest": "Buyers Showed Interest",
+      "interestCount": "{{count}} buyers interested",
+      "token": "Token Advance Received",
+      "sold": "Sold"
+    },
+    "progressDisclaimer": "This indicator reflects current buyer activity. All discussions remain confidential.",
+    "useCaseTypes": {
+      "residential": "Residential",
+      "agriculture": "Agriculture",
+      "industrial": "Industrial",
+      "mixedUse": "Mixed-Use"
+    },
+    "useCasesIntro": "Based on zoning, terrain, and market analysis, this property is suitable for the following development types.",
+    "connectivityIntro": "Strategic positioning relative to major economic centers and transport infrastructure.",
+    "travelTime": "~{{time}} by road",
+    "infrastructure": "Infrastructure Access",
+    "nearestHighway": "Nearest Highway",
+    "nearestRailway": "Nearest Railway",
+    "loadingMap": "Loading map...",
+    "propertyLocation": "Property Location",
+    "majorCities": "Major Cities",
+    "connectivityLines": "Connectivity",
+    "ctaTitle": "Interested in this property?",
+    "ctaDescription": "Schedule a confidential conversation with our advisory team to discuss this opportunity in detail.",
+    "cta": "Request Property Details",
+    "callNow": "Call Now"
   }
 }

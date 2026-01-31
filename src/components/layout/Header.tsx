@@ -11,6 +11,7 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { labelKey: "nav.properties", href: "/properties" },
     { labelKey: "nav.regions", href: "/regions" },
     { labelKey: "nav.insights", href: "/insights" },
     { labelKey: "nav.about", href: "/about" },

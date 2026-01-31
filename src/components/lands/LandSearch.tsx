@@ -151,3 +151,4 @@ export const LandSearch = ({ variant = "hero" }: { variant?: "hero" | "page" }) 
 };
 
 
+

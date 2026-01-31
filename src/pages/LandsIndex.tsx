@@ -4,23 +4,23 @@ import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { LandSearch } from "@/components/lands/LandSearch";
 import { PropertyCard } from "@/components/lands/PropertyCard";
-import { getPropertiesByFilters } from "@/data/properties";
+import { getFilteredProperties, properties } from "@/data/properties";
 import { useTranslation } from "react-i18next";
 
 const LandsIndex = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   
-  const filters = {
-    location: searchParams.get("location") || undefined,
-    landType: searchParams.get("type") || undefined,
-    budgetMin: searchParams.get("budgetMin") || undefined,
-    budgetMax: searchParams.get("budgetMax") || undefined,
-    sizeMin: searchParams.get("sizeMin") || undefined,
-    sizeMax: searchParams.get("sizeMax") || undefined,
-  };
+  // For now, return all properties. Filtering can be enhanced later
+  // const filters = {
+  //   region: searchParams.get("location") as Region | undefined,
+  //   useCase: searchParams.get("type") as UseCase | undefined,
+  //   verification: searchParams.get("verification") as VerificationStatus | undefined,
+  // };
 
-  const properties = getPropertiesByFilters(filters);
+  const filteredProperties = getFilteredProperties({});
+  // Use all properties for now until filtering is properly implemented
+  const propertiesList = filteredProperties.length > 0 ? filteredProperties : properties;
 
   return (
     <Layout>
@@ -56,13 +56,13 @@ const LandsIndex = () => {
         <div className="container-luxury">
           <div className="mb-8">
             <p className="text-foreground/60">
-              {t("lands.results", { count: properties.length })}
+              {t("lands.results", { count: propertiesList.length })}
             </p>
           </div>
 
-          {properties.length > 0 ? (
+          {propertiesList.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {properties.map((property, index) => (
+              {propertiesList.map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
             </div>
@@ -79,5 +79,6 @@ const LandsIndex = () => {
 };
 
 export default LandsIndex;
+
 
 

@@ -1,3 +1,9 @@
+// Import images
+import paddyFieldsImage from "@/assets/images/farms/paddy-fields.jpg";
+import arunachalaTempleImage from "@/assets/images/temples/arunachala-temple.jpg";
+import heritageStreetImage from "@/assets/images/streets/heritage-street.jpg";
+import industrialFacilityImage from "@/assets/images/factories/industrial-facility.jpg";
+
 // Property Types
 export type Region = "thiruvannamalai" | "kallakurichi" | "villupuram" | "sankarapuram";
 export type VerificationStatus = "not_verified" | "in_progress" | "verified";
@@ -132,7 +138,7 @@ For investors seeking land that combines productive agricultural capacity with s
     },
     images: [
       {
-        src: "/src/assets/images/farms/paddy-fields.jpg",
+        src: paddyFieldsImage,
         alt: {
           en: "Panoramic view of agricultural land with Arunachala Hill in background",
           ta: "பின்னணியில் அருணாச்சலா மலையுடன் விவசாய நிலத்தின் பரந்த காட்சி",
@@ -140,7 +146,7 @@ For investors seeking land that combines productive agricultural capacity with s
         category: "land",
       },
       {
-        src: "/src/assets/images/temples/arunachala-temple.jpg",
+        src: arunachalaTempleImage,
         alt: {
           en: "View of Arunachaleswarar Temple from the property vicinity",
           ta: "சொத்தின் அருகிலிருந்து அருணாச்சலேஸ்வரர் கோவிலின் காட்சி",
@@ -148,7 +154,7 @@ For investors seeking land that combines productive agricultural capacity with s
         category: "landmark",
       },
       {
-        src: "/src/assets/images/streets/heritage-street.jpg",
+        src: heritageStreetImage,
         alt: {
           en: "Access road leading to the property",
           ta: "சொத்துக்கு செல்லும் அணுகல் சாலை",
@@ -213,7 +219,7 @@ Government incentives for industries establishing in newly formed districts prov
     },
     images: [
       {
-        src: "/src/assets/images/factories/industrial-facility.jpg",
+        src: industrialFacilityImage,
         alt: {
           en: "Industrial corridor development potential visualization",
           ta: "தொழில்துறை நடைபாதை வளர்ச்சி திறன் காட்சிப்படுத்தல்",
@@ -278,7 +284,7 @@ Title verification has been completed with clear documentation. The seller is a 
     },
     images: [
       {
-        src: "/src/assets/images/factories/industrial-facility.jpg",
+        src: industrialFacilityImage,
         alt: {
           en: "Land near Villupuram railway junction with logistics potential",
           ta: "தளவாட திறனுடன் விழுப்புரம் இரயில் சந்திப்பு அருகே நிலம்",
@@ -343,7 +349,7 @@ For investors with a 7-10 year horizon and patience for gradual appreciation, Sa
     },
     images: [
       {
-        src: "/src/assets/images/farms/paddy-fields.jpg",
+        src: paddyFieldsImage,
         alt: {
           en: "Expansive agricultural land in Sankarapuram with development potential",
           ta: "வளர்ச்சி திறனுடன் சங்கராபுரத்தில் விரிவான விவசாய நிலம்",

@@ -290,3 +290,4 @@ const LandDetail = () => {
 export default LandDetail;
 
 
+

@@ -100,3 +100,4 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
 };
 
 
+

@@ -11,6 +11,8 @@ import InsightsIndex from "./pages/InsightsIndex";
 import InsightDetail from "./pages/InsightDetail";
 import PropertiesIndex from "./pages/PropertiesIndex";
 import PropertyDetail from "./pages/PropertyDetail";
+import LandsIndex from "./pages/LandsIndex";
+import LandDetail from "./pages/LandDetail";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -26,6 +28,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/lands" element={<LandsIndex />} />
+            <Route path="/lands/:slug" element={<LandDetail />} />
             <Route path="/properties" element={<PropertiesIndex />} />
             <Route path="/properties/:slug" element={<PropertyDetail />} />
             <Route path="/regions" element={<RegionsIndex />} />

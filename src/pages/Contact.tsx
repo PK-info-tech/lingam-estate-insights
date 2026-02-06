@@ -90,10 +90,10 @@ const Contact = () => {
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">{t("contact.email")}</p>
                     <a
-                      href="mailto:premenaga@gmail.com"
+                      href="mailto:contact@lingamestate.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      premenaga@gmail.com
+                      contact@lingamestate.com
                     </a>
                   </div>
                 </div>

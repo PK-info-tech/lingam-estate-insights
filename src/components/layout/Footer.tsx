@@ -75,10 +75,10 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <h4 className="caption text-white/40 mb-6">{t("footer.connect")}</h4>
             <a
-              href="mailto:hello@lingamestate.com"
+              href="mailto:contact@lingamestate.com"
               className="text-white/70 hover:text-white transition-colors duration-300"
             >
-              hello@lingamestate.com
+              contact@lingamestate.com
             </a>
           </div>
         </div>

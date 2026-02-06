@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
-const toEmail = "premenaga@gmail.com";
+const toEmail = "contact@lingamestate.com";
 
 export async function POST(request: Request) {
   try {

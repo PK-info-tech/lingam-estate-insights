@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { ReactNode } from "react";
 import { Providers } from "./providers";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Lingam Estate",
@@ -17,6 +18,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       </head>
       <body className="bg-background text-foreground">
         <Providers>{children}</Providers>
+        <SpeedInsights />
       </body>
     </html>
   );

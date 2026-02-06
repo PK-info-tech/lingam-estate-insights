@@ -4,9 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { Mail, MapPin } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const Contact = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -30,6 +33,21 @@ const Contact = () => {
       <SEO
         title="Contact"
         description="Request a conversation with Lingam Estate about strategic land investment opportunities in Tamil Nadu."
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Contact", url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact",
+            description:
+              "Request a conversation with Lingam Estate about strategic land investment opportunities in Tamil Nadu.",
+            url: absoluteUrl(pathname),
+          },
+        ]}
       />
 
       <section className="pt-32 pb-20 bg-background min-h-screen">

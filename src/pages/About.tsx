@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const About = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   
   const values = [
     {
@@ -30,6 +32,21 @@ const About = () => {
       <SEO
         title="About"
         description="Lingam Estate provides strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors."
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "About", url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            name: "About",
+            description:
+              "Lingam Estate provides strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors.",
+            url: absoluteUrl(pathname),
+          },
+        ]}
       />
 
       {/* Header */}

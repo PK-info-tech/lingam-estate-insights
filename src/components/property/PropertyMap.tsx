@@ -20,6 +20,11 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
   const { t, i18n } = useTranslation();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
+  const leafletRef = useRef<typeof import("leaflet") | null>(null);
+  const propertyMarkerRef = useRef<L.Marker | null>(null);
+  const cityMarkersRef = useRef<Record<string, L.Marker>>({});
+  const distanceMarkersRef = useRef<L.Marker[]>([]);
+  const lastPropertySlugRef = useRef<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const currentLang = i18n.language as "en" | "ta";
@@ -27,8 +32,10 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
   useEffect(() => {
     // Dynamically import Leaflet
     const loadMap = async () => {
+      setMapLoaded(false);
       const L = await import("leaflet");
       await import("leaflet/dist/leaflet.css");
+      leafletRef.current = L;
 
       if (!mapRef.current || mapInstanceRef.current) return;
 
@@ -60,11 +67,10 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
       });
 
       // Add property marker
-      L.marker([property.coordinates.lat, property.coordinates.lng], { icon: propertyIcon })
+      const propertyMarker = L.marker([property.coordinates.lat, property.coordinates.lng], { icon: propertyIcon })
         .addTo(map)
-        .bindPopup(
-          `<div class="text-sm font-medium">${property.title[currentLang] || property.title.en}</div>`
-        );
+        .bindPopup(`<div class="text-sm font-medium">${property.title[currentLang] || property.title.en}</div>`);
+      propertyMarkerRef.current = propertyMarker;
 
       // Add city markers and connection lines
       Object.entries(majorCities).forEach(([key, city]) => {
@@ -78,9 +84,10 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
           iconAnchor: [12, 12],
         });
 
-        L.marker([city.lat, city.lng], { icon: cityIcon })
+        const cityMarker = L.marker([city.lat, city.lng], { icon: cityIcon })
           .addTo(map)
           .bindPopup(`<div class="text-sm">${city.name[currentLang]}</div>`);
+        cityMarkersRef.current[key] = cityMarker;
 
         // Connection line
         const connectivity = property.connectivity[key as keyof typeof majorCities];
@@ -102,7 +109,7 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
           const midLat = (property.coordinates.lat + city.lat) / 2;
           const midLng = (property.coordinates.lng + city.lng) / 2;
           
-          L.marker([midLat, midLng], {
+          const distanceMarker = L.marker([midLat, midLng], {
             icon: L.divIcon({
               className: "distance-label",
               html: `<div class="bg-background/90 backdrop-blur-sm px-2 py-1 text-xs border border-border rounded shadow-sm">
@@ -112,6 +119,7 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
               iconAnchor: [40, 12],
             }),
           }).addTo(map);
+          distanceMarkersRef.current.push(distanceMarker);
         }
       });
 
@@ -123,6 +131,7 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
       map.fitBounds(bounds, { padding: [50, 50] });
 
       mapInstanceRef.current = map;
+      lastPropertySlugRef.current = property.slug;
       setMapLoaded(true);
     };
 
@@ -132,9 +141,28 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
+        propertyMarkerRef.current = null;
+        cityMarkersRef.current = {};
+        distanceMarkersRef.current = [];
+        lastPropertySlugRef.current = null;
       }
     };
-  }, [property, currentLang]);
+  }, [property]);
+
+  useEffect(() => {
+    if (!leafletRef.current) return;
+    if (propertyMarkerRef.current) {
+      propertyMarkerRef.current.setPopupContent(
+        `<div class="text-sm font-medium">${property.title[currentLang] || property.title.en}</div>`
+      );
+    }
+    Object.entries(majorCities).forEach(([key, city]) => {
+      const marker = cityMarkersRef.current[key];
+      if (marker) {
+        marker.setPopupContent(`<div class="text-sm">${city.name[currentLang]}</div>`);
+      }
+    });
+  }, [currentLang, property]);
 
   // Handle fullscreen toggle
   useEffect(() => {

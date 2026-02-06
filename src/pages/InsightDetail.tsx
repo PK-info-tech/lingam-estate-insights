@@ -1,9 +1,10 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 interface ArticleContent {
   title: string;
@@ -116,6 +117,7 @@ const articlesContent: Record<string, ArticleContent> = {
 const InsightDetail = () => {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
+  const { pathname } = useLocation();
   const article = slug ? articlesContent[slug] : null;
 
   const formatDate = (dateString: string) => {
@@ -148,6 +150,35 @@ const InsightDetail = () => {
         title={article.title}
         description={article.excerpt}
         type="article"
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Insights", url: "/insights" },
+            { name: article.title, url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.excerpt,
+            datePublished: article.date,
+            dateModified: article.date,
+            mainEntityOfPage: absoluteUrl(pathname),
+            author: {
+              "@type": "Organization",
+              name: SITE_NAME,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: SITE_NAME,
+              logo: {
+                "@type": "ImageObject",
+                url: absoluteUrl("/og-image.jpg"),
+              },
+            },
+          },
+        ]}
       />
 
       {/* Header */}

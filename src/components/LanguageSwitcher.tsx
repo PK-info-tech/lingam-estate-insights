@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Globe, Check } from "lucide-react";
 
 const languages = [
@@ -12,6 +12,9 @@ export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const firstItemRef = useRef<HTMLButtonElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const menuId = "language-menu";
 
   const currentLanguage = languages.find((lang) => lang.code === i18n.language) || languages[0];
 
@@ -25,6 +28,24 @@ export const LanguageSwitcher = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      firstItemRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   const handleLanguageChange = (langCode: string) => {
     i18n.changeLanguage(langCode);
     setIsOpen(false);
@@ -36,6 +57,9 @@ export const LanguageSwitcher = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors duration-300 rounded-md hover:bg-accent"
         aria-label="Change language"
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-haspopup="menu"
       >
         <Globe className="w-4 h-4" />
         <span className="hidden sm:inline">{currentLanguage.nativeName}</span>
@@ -44,10 +68,13 @@ export const LanguageSwitcher = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.96 }}
+            id={menuId}
+            role="menu"
+            aria-label="Select language"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.96 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.96 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.15, ease: "easeOut" }}
             className="absolute right-0 mt-2 w-44 bg-background border border-border rounded-lg shadow-xl overflow-hidden z-50"
           >
             <div className="py-1">
@@ -56,6 +83,8 @@ export const LanguageSwitcher = () => {
                   key={lang.code}
                   onClick={() => handleLanguageChange(lang.code)}
                   className="w-full flex items-center justify-between px-4 py-3 text-sm text-foreground hover:bg-accent transition-colors duration-200"
+                  role="menuitem"
+                  ref={lang.code === languages[0].code ? firstItemRef : undefined}
                 >
                   <div className="flex flex-col items-start">
                     <span className="font-medium">{lang.nativeName}</span>

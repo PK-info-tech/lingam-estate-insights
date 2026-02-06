@@ -6,9 +6,12 @@ import { SEO } from "@/components/SEO";
 import { PropertyFilters, PropertyGrid } from "@/components/property";
 import { properties, getFilteredProperties } from "@/data/properties";
 import type { Region, UseCase, VerificationStatus } from "@/data/properties";
+import { useLocation } from "react-router-dom";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const PropertiesIndex = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   const [selectedRegion, setSelectedRegion] = useState<Region | undefined>();
   const [selectedUseCase, setSelectedUseCase] = useState<UseCase | undefined>();
@@ -31,8 +34,30 @@ const PropertiesIndex = () => {
   return (
     <Layout>
       <SEO
-        title={`${t("properties.title")} | Lingam Estate`}
+        title={t("properties.title")}
         description={t("properties.subtitle")}
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: t("properties.title"), url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: t("properties.title"),
+            description: t("properties.subtitle"),
+            url: absoluteUrl(pathname),
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: properties.map((property, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: absoluteUrl(`/properties/${property.slug}`),
+              })),
+            },
+          },
+        ]}
       />
 
       {/* Hero Section */}

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const NotFound = () => {
   const { t } = useTranslation();
@@ -18,6 +19,12 @@ const NotFound = () => {
       <SEO
         title="Page Not Found"
         description="The page you're looking for doesn't exist."
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "404", url: location.pathname },
+          ]),
+        ]}
       />
       <section className="min-h-screen flex items-center justify-center bg-background">
         <motion.div

@@ -6,10 +6,13 @@ import { LandSearch } from "@/components/lands/LandSearch";
 import { PropertyCard } from "@/components/lands/PropertyCard";
 import { getFilteredProperties, properties } from "@/data/properties";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const LandsIndex = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
   
   // For now, return all properties. Filtering can be enhanced later
   // const filters = {
@@ -27,6 +30,28 @@ const LandsIndex = () => {
       <SEO
         title={t("lands.title")}
         description={t("lands.description")}
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: t("lands.title"), url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: t("lands.title"),
+            description: t("lands.description"),
+            url: absoluteUrl(pathname),
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: properties.map((property, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: absoluteUrl(`/lands/${property.slug}`),
+              })),
+            },
+          },
+        ]}
       />
 
       {/* Hero with Search */}
@@ -79,6 +104,4 @@ const LandsIndex = () => {
 };
 
 export default LandsIndex;
-
-
 

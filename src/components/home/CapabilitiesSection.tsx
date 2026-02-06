@@ -26,6 +26,8 @@ export const CapabilitiesSection = () => {
                 src={industrialImage}
                 alt="Industrial development potential"
                 className="img-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </motion.div>

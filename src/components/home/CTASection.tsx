@@ -42,6 +42,8 @@ export const CTASection = () => {
                 src={architectureImage}
                 alt="Abstract architectural detail"
                 className="img-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </motion.div>

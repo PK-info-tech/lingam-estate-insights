@@ -50,6 +50,8 @@ export const PropertyGallery = ({ images, className }: PropertyGalleryProps) => 
               src={images[currentIndex].src}
               alt={images[currentIndex].alt[currentLang] || images[currentIndex].alt.en}
               className="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -112,6 +114,8 @@ export const PropertyGallery = ({ images, className }: PropertyGalleryProps) => 
                   src={image.src}
                   alt={image.alt[currentLang] || image.alt.en}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </button>
             ))}
@@ -165,6 +169,8 @@ export const PropertyGallery = ({ images, className }: PropertyGalleryProps) => 
                 src={images[currentIndex].src}
                 alt={images[currentIndex].alt[currentLang] || images[currentIndex].alt.en}
                 className="max-w-full max-h-full object-contain"
+                loading="eager"
+                decoding="async"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}

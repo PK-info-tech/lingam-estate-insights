@@ -14,6 +14,9 @@ export const HeroSection = () => {
           src={heroImage}
           alt="Tamil Nadu landscape at golden hour"
           className="img-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/70 via-charcoal/40 to-transparent" />
       </div>

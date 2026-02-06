@@ -42,6 +42,7 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
               alt={heroImage.alt[currentLang] || heroImage.alt.en}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
+              decoding="async"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">

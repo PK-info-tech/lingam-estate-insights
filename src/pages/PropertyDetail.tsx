@@ -1,8 +1,7 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
 import {
   PropertyGallery,
@@ -13,6 +12,8 @@ import {
   BuyerProgressIndicator,
 } from "@/components/property";
 import { getPropertyBySlug } from "@/data/properties";
+import { SEO } from "@/components/SEO";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const regionLabels: Record<string, { en: string; ta: string }> = {
   thiruvannamalai: { en: "Thiruvannamalai", ta: "திருவண்ணாமலை" },
@@ -24,6 +25,7 @@ const regionLabels: Record<string, { en: string; ta: string }> = {
 const PropertyDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t, i18n } = useTranslation();
+  const { pathname } = useLocation();
   const currentLang = i18n.language as "en" | "ta";
 
   const property = slug ? getPropertyBySlug(slug) : undefined;
@@ -47,43 +49,59 @@ const PropertyDetail = () => {
   const overview = property.overview[currentLang] || property.overview.en;
   const description = overview.substring(0, 155) + "...";
 
-  // Structured Data for SEO
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "RealEstateListing",
     name: title,
     description: description,
-    category: "Land",
+    url: absoluteUrl(pathname),
+    image: property.images[0] ? absoluteUrl(property.images[0].src) : undefined,
+    datePosted: property.createdAt,
+    dateModified: property.updatedAt,
     offers: {
       "@type": "Offer",
       priceCurrency: "INR",
-      availability: property.buyerProgress.stage === "sold" 
-        ? "https://schema.org/SoldOut" 
-        : "https://schema.org/InStock",
+      availability:
+        property.buyerProgress.stage === "sold"
+          ? "https://schema.org/SoldOut"
+          : "https://schema.org/InStock",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: property.region,
+      addressCountry: "IN",
     },
     geo: {
       "@type": "GeoCoordinates",
       latitude: property.coordinates.lat,
       longitude: property.coordinates.lng,
     },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Land area",
+        value: `${property.area.value} ${property.area.unit}`,
+      },
+    ],
   };
 
   return (
     <Layout>
-      <Helmet>
-        <title>{`${title} | Lingam Estate`}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={`${title} | Lingam Estate`} />
-        <meta property="og:description" content={description} />
-        {property.images[0] && (
-          <meta property="og:image" content={property.images[0].src} />
-        )}
-        <meta property="og:type" content="product" />
-        <link rel="canonical" href={`https://lingamestate.com/properties/${property.slug}`} />
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      </Helmet>
+      <SEO
+        title={title}
+        description={description}
+        canonical={pathname}
+        type="website"
+        image={property.images[0]?.src}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Properties", url: "/properties" },
+            { name: title, url: pathname },
+          ]),
+          structuredData,
+        ]}
+      />
 
       {/* Back Navigation */}
       <div className="pt-28 md:pt-32">

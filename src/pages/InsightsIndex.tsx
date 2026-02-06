@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { useLocation } from "react-router-dom";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 interface InsightArticle {
   slug: string;
@@ -12,6 +14,7 @@ interface InsightArticle {
 
 const InsightsIndex = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   
   const articles: InsightArticle[] = [
     {
@@ -48,6 +51,29 @@ const InsightsIndex = () => {
       <SEO
         title="Insights"
         description="Strategic perspectives on land investment, infrastructure development, and market dynamics in Tamil Nadu's emerging growth corridors."
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Insights", url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Insights",
+            description:
+              "Strategic perspectives on land investment, infrastructure development, and market dynamics in Tamil Nadu's emerging growth corridors.",
+            url: absoluteUrl(pathname),
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: articles.map((article, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: absoluteUrl(`/insights/${article.slug}`),
+              })),
+            },
+          },
+        ]}
       />
 
       {/* Header */}

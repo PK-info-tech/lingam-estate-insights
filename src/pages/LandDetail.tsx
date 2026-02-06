@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ import {
   PropertyCTA,
   VerificationBadge,
 } from "@/components/property";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const regionLabels: Record<string, { en: string; ta: string }> = {
   thiruvannamalai: { en: "Thiruvannamalai", ta: "திருவண்ணாமலை" },
@@ -23,6 +24,7 @@ const LandDetail = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as "en" | "ta";
   const { slug } = useParams<{ slug: string }>();
+  const { pathname } = useLocation();
   const property = slug ? getPropertyBySlug(slug) : null;
 
   if (!property) {
@@ -47,7 +49,52 @@ const LandDetail = () => {
 
   return (
     <Layout>
-      <SEO title={`${title} | Lingam Estate`} description={description} />
+      <SEO
+        title={title}
+        description={description}
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Lands", url: "/lands" },
+            { name: title, url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "RealEstateListing",
+            name: title,
+            description: description,
+            url: absoluteUrl(pathname),
+            image: heroImage ? absoluteUrl(heroImage.src) : undefined,
+            datePosted: property.createdAt,
+            dateModified: property.updatedAt,
+            offers: {
+              "@type": "Offer",
+              availability:
+                property.buyerProgress.stage === "sold"
+                  ? "https://schema.org/SoldOut"
+                  : "https://schema.org/InStock",
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressRegion: property.region,
+              addressCountry: "IN",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: property.coordinates.lat,
+              longitude: property.coordinates.lng,
+            },
+            additionalProperty: [
+              {
+                "@type": "PropertyValue",
+                name: "Land area",
+                value: `${property.area.value} ${property.area.unit}`,
+              },
+            ],
+          },
+        ]}
+      />
 
       {/* Header */}
       <section className="pt-32 pb-12 bg-background">
@@ -81,6 +128,8 @@ const LandDetail = () => {
                     src={heroImage.src}
                     alt={heroImage.alt[currentLang] || heroImage.alt.en}
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-secondary" />

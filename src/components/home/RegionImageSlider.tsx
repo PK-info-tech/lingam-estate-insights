@@ -124,6 +124,8 @@ export const RegionImageSlider = ({
             src={currentSlide.image}
             alt={language === "ta" ? currentSlide.titleTa : currentSlide.title}
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent" />

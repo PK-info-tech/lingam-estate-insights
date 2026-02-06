@@ -5,9 +5,12 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import regionImage from "@/assets/region-thiruvannamalai.jpg";
+import { useLocation } from "react-router-dom";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const RegionsIndex = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   
   const regions = [
     {
@@ -32,6 +35,21 @@ const RegionsIndex = () => {
       <SEO
         title="Regions"
         description="Explore strategic investment regions in Tamil Nadu: Thiruvannamalai, Kallakurichi, Villupuram, and Sankarapuram."
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Regions", url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Regions",
+            description:
+              "Explore strategic investment regions in Tamil Nadu: Thiruvannamalai, Kallakurichi, Villupuram, and Sankarapuram.",
+            url: absoluteUrl(pathname),
+          },
+        ]}
       />
 
       {/* Hero */}
@@ -68,6 +86,8 @@ const RegionsIndex = () => {
               src={regionImage}
               alt="Tamil Nadu countryside"
               className="img-cover"
+              loading="lazy"
+              decoding="async"
             />
           </motion.div>
         </div>

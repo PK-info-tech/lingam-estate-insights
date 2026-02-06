@@ -1,13 +1,15 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
+import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const RegionDetail = () => {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
+  const { pathname } = useLocation();
   
   if (!slug || !["thiruvannamalai", "kallakurichi", "villupuram", "sankarapuram"].includes(slug)) {
     return (
@@ -40,6 +42,21 @@ const RegionDetail = () => {
       <SEO
         title={`${region.name} | Strategic Investment Region`}
         description={region.description.substring(0, 155)}
+        canonical={pathname}
+        structuredData={[
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+            { name: "Regions", url: "/regions" },
+            { name: region.name, url: pathname },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: region.name,
+            description: region.description,
+            url: absoluteUrl(pathname),
+          },
+        ]}
       />
 
       {/* Header */}

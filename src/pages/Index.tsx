@@ -10,13 +10,36 @@ import {
   CTASection,
 } from "@/components/home";
 import { BrokerComparison } from "@/components/lands";
+import {
+  absoluteUrl,
+  buildBreadcrumbList,
+  buildOrganizationSchema,
+  buildWebsiteSchema,
+  SITE_NAME,
+} from "@/lib/seo";
 
 const Index = () => {
   return (
     <Layout>
       <SEO
-        title="Lingam Estate | Strategic Land Advisory"
+        title="Strategic Land Advisory"
         description="Strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors. Thiruvannamalai, Kallakurichi, Villupuram, Sankarapuram."
+        canonical="/"
+        structuredData={[
+          buildOrganizationSchema(),
+          buildWebsiteSchema(),
+          buildBreadcrumbList([
+            { name: SITE_NAME, url: "/" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: SITE_NAME,
+            url: absoluteUrl("/"),
+            description:
+              "Strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors.",
+          },
+        ]}
       />
       <HeroSection />
       <InvestmentThesis />

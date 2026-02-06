@@ -1,6 +1,8 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 
@@ -36,7 +38,7 @@ export const RegionsSection = () => {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
             >
               <Link
-                to={`/regions/${key}`}
+                href={`/regions/${key}`}
                 className="block bg-background p-10 md:p-12 h-full group transition-colors duration-300 hover:bg-accent"
               >
                 <div className="flex items-start justify-between mb-6">

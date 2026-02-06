@@ -5,6 +5,9 @@ import arunachalaTempleImage from "@/assets/images/temples/arunachala-temple.jpg
 import heritageStreetImage from "@/assets/images/streets/heritage-street.jpg";
 import industrialFacilityImage from "@/assets/images/factories/industrial-facility.jpg";
 
+const toSrc = (asset: unknown) =>
+  typeof asset === "string" ? asset : (asset as { src?: string })?.src || "";
+
 // Property Types
 export const regionValues = ["thiruvannamalai", "kallakurichi", "villupuram", "sankarapuram"] as const;
 export const verificationValues = ["not_verified", "in_progress", "verified"] as const;
@@ -15,6 +18,7 @@ export const imageCategoryValues = ["land", "road", "landmark", "lifestyle"] as 
 export type Region = (typeof regionValues)[number];
 export type VerificationStatus = (typeof verificationValues)[number];
 export type BuyerProgressStage = (typeof buyerProgressValues)[number];
+export type BuyerProgress = z.infer<typeof buyerProgressSchema>;
 export type UseCase = (typeof useCaseValues)[number];
 export type ImageCategory = (typeof imageCategoryValues)[number];
 
@@ -28,6 +32,7 @@ const propertyImageSchema = z.object({
   alt: localizedTextSchema,
   category: z.enum(imageCategoryValues),
 });
+export type PropertyImage = z.infer<typeof propertyImageSchema>;
 
 const connectivitySchema = z.object({
   distance: z.string(),
@@ -142,7 +147,7 @@ For investors seeking land that combines productive agricultural capacity with s
     },
     images: [
       {
-        src: paddyFieldsImage,
+        src: toSrc(paddyFieldsImage),
         alt: {
           en: "Panoramic view of agricultural land with Arunachala Hill in background",
           ta: "பின்னணியில் அருணாச்சலா மலையுடன் விவசாய நிலத்தின் பரந்த காட்சி",
@@ -150,7 +155,7 @@ For investors seeking land that combines productive agricultural capacity with s
         category: "land",
       },
       {
-        src: arunachalaTempleImage,
+        src: toSrc(arunachalaTempleImage),
         alt: {
           en: "View of Arunachaleswarar Temple from the property vicinity",
           ta: "சொத்தின் அருகிலிருந்து அருணாச்சலேஸ்வரர் கோவிலின் காட்சி",
@@ -158,7 +163,7 @@ For investors seeking land that combines productive agricultural capacity with s
         category: "landmark",
       },
       {
-        src: heritageStreetImage,
+        src: toSrc(heritageStreetImage),
         alt: {
           en: "Access road leading to the property",
           ta: "சொத்துக்கு செல்லும் அணுகல் சாலை",
@@ -223,7 +228,7 @@ Government incentives for industries establishing in newly formed districts prov
     },
     images: [
       {
-        src: industrialFacilityImage,
+        src: toSrc(industrialFacilityImage),
         alt: {
           en: "Industrial corridor development potential visualization",
           ta: "தொழில்துறை நடைபாதை வளர்ச்சி திறன் காட்சிப்படுத்தல்",
@@ -288,7 +293,7 @@ Title verification has been completed with clear documentation. The seller is a 
     },
     images: [
       {
-        src: industrialFacilityImage,
+        src: toSrc(industrialFacilityImage),
         alt: {
           en: "Land near Villupuram railway junction with logistics potential",
           ta: "தளவாட திறனுடன் விழுப்புரம் இரயில் சந்திப்பு அருகே நிலம்",
@@ -353,7 +358,7 @@ For investors with a 7-10 year horizon and patience for gradual appreciation, Sa
     },
     images: [
       {
-        src: paddyFieldsImage,
+        src: toSrc(paddyFieldsImage),
         alt: {
           en: "Expansive agricultural land in Sankarapuram with development potential",
           ta: "வளர்ச்சி திறனுடன் சங்கராபுரத்தில் விரிவான விவசாய நிலம்",
@@ -367,6 +372,22 @@ For investors with a 7-10 year horizon and patience for gradual appreciation, Sa
 ];
 
 // Helper functions
+const normalizeImages = (items: Property[]): Property[] =>
+  items.map((p) => ({
+    ...p,
+    images: p.images.map((img) => ({
+      ...img,
+      src:
+        typeof img.src === "string"
+          ? img.src
+          : typeof (img.src as unknown as { src?: string })?.src === "string"
+            ? (img.src as unknown as { src?: string }).src!
+            : "",
+    })),
+  }));
+
+export const properties: Property[] = propertySchema.array().parse(normalizeImages(propertiesData));
+
 export const getPropertyBySlug = (slug: string): Property | undefined => {
   return properties.find((p) => p.slug === slug);
 };
@@ -395,5 +416,3 @@ export const getFilteredProperties = (filters: {
     return true;
   });
 };
-
-export const properties: Property[] = propertySchema.array().parse(propertiesData);

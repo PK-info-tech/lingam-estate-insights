@@ -1,3 +1,5 @@
+"use client";
+
 import { SEO } from "@/components/SEO";
 import { Layout } from "@/components/layout";
 import {
@@ -17,6 +19,7 @@ import {
   buildWebsiteSchema,
   SITE_NAME,
 } from "@/lib/seo";
+import heroImage from "@/assets/hero-landscape.jpg";
 
 const Index = () => {
   return (
@@ -25,6 +28,7 @@ const Index = () => {
         title="Strategic Land Advisory"
         description="Strategic land advisory for industrial and infrastructure investments in Tamil Nadu's emerging growth corridors. Thiruvannamalai, Kallakurichi, Villupuram, Sankarapuram."
         canonical="/"
+        preloadImage={heroImage}
         structuredData={[
           buildOrganizationSchema(),
           buildWebsiteSchema(),

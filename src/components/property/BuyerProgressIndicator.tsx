@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Users, CircleDot, CheckCircle2, XCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";

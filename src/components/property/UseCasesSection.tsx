@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 import { Home, Wheat, Factory, Layers } from "lucide-react";
 import { motion } from "framer-motion";

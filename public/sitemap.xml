@@ -7,36 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lingamestate.com/lands</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lingamestate.com/lands/arunachala-view-agricultural-land</loc>
-    <lastmod>2024-02-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lingamestate.com/lands/kallakurichi-industrial-plot</loc>
-    <lastmod>2024-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lingamestate.com/lands/villupuram-logistics-hub</loc>
-    <lastmod>2024-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lingamestate.com/lands/sankarapuram-emerging-opportunity</loc>
-    <lastmod>2024-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://lingamestate.com/properties</loc>
     <lastmod>2026-02-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -123,6 +93,54 @@
   <url>
     <loc>https://lingamestate.com/insights/title-verification-essentials</loc>
     <lastmod>2024-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/patta-chitta-ec-checklist-thiruvannamalai</loc>
+    <lastmod>2025-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/kallakurichi-industrial-logistics-map</loc>
+    <lastmod>2025-02-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/water-and-borewell-arunachala-belt</loc>
+    <lastmod>2025-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/temple-view-legal-guardrails</loc>
+    <lastmod>2025-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/nri-playbook-tn-land</loc>
+    <lastmod>2025-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/agri-to-industrial-kallakurichi-timeline</loc>
+    <lastmod>2025-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/nh77-nh79-road-projects-thiruvannamalai</loc>
+    <lastmod>2025-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/title-defects-we-blocked-thiruvannamalai</loc>
+    <lastmod>2025-02-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

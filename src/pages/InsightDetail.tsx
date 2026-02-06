@@ -1,4 +1,7 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -112,12 +115,153 @@ const articlesContent: Record<string, ArticleContent> = {
       "A thorough title verification process, while time-consuming, is essential for protecting your land investment. The cost of proper due diligence is minimal compared to the potential cost of title disputes after acquisition.",
     ],
   },
+  "patta-chitta-ec-checklist-thiruvannamalai": {
+    title: "Patta, Chitta, EC: Fast-Track Checklist for Thiruvannamalai Buyers",
+    excerpt:
+      "Exact steps, offices, and timelines to secure patta, chitta, and EC around Arunachala—what we verify before we advise a client to proceed.",
+    date: "2025-02-01",
+    category: "Legal",
+    readTime: "11 min read",
+    content: [
+      "On a recent 5.2-acre buy near Chengam Road, we cleared patta, chitta, and EC in 9 business days because we treated them as parallel tracks. When we staggered these in 2023, the same work took 32 days. Speed is possible when you arrive with complete papers and respectful follow-up.",
+      "## Where we file (and who matters)",
+      "Patta: VAO counter with latest tax receipt, sale deed copy, survey sketch. Chitta/Adangal: taluk office—crop entries reveal silent changes; we cross-check with village assistants. EC: sub-registrar, always for 30 years. Knowing the data-entry clerk’s lunch window is as useful as any template.",
+      "## Timelines we actually see",
+      "Clean lineage: patta correction 2–3 weeks; inheritance mutation adds 2–3 more. EC: 2–5 days except fiscal year-end. Chitta/Adangal: same day unless there’s a boundary dispute. We never pay a token until EC is in hand.",
+      "## Red flags that stop us",
+      "Unmutated inheritance, mismatched sub-division, joint patta with absentee heirs, EC entries showing back-to-back PoAs. We escrow or walk away; we don’t “proceed and hope.”",
+      "## Our fast-track stack",
+      "Parallel filing; pre-drafted affidavits for minor name mismatches; on-ground runner for EC; surveyor on call to resolve sub-division doubts the same week. If one document drags, we tell the seller exactly why and what must be fixed—no vague promises.",
+    ],
+  },
+  "kallakurichi-industrial-logistics-map": {
+    title: "Kallakurichi Industrial Land: Where Logistics Actually Work",
+    excerpt:
+      "High-confidence pockets for warehousing and light industry in Kallakurichi, with highway access, power proximity, and realistic timelines.",
+    date: "2025-02-03",
+    category: "Infrastructure",
+    readTime: "10 min read",
+    content: [
+      "In Kallakurichi we walk the route with truckers before we underwrite. On one shortlisted 12-acre parcel near the SH-6 spur, drivers showed us the exact bottleneck—a 15 ft bridge that kills 40-ft container movement. We dropped that site the same evening.",
+      "## Access that really matters",
+      "Frontage within 2 km of SH-6 feeders and under 15 km to NH77 keeps line-haul predictable. We prefer sites inside a 10 km radius of the Periyeriyur 110 kV substation—recent approvals there got LT connections in 45–60 days instead of 90+.",
+      "## Parcel geometry and depth",
+      "For warehousing we need 200–300 m depth and clean turning radii; panhandles add months. Slightly higher-priced flat parcels beat cheaper undulating land once you factor ₹40–60/sqft in grading.",
+      "## Friction we budget for",
+      "Approach-road widening by a panchayat can take 60–90 days; transformer augmentation when loads are near cap adds another 30–45. We model these delays into IRR; if the deal dies, we’re glad it died on paper.",
+      "## Our shortlist criteria",
+      "Clear EC, all-weather frontage, depth >200 m, power infra <10 km, and soil bearing verified with a light geotech probe. Only then do we open price talks.",
+    ],
+  },
+  "water-and-borewell-arunachala-belt": {
+    title: "Water & Borewell Reality in the Arunachala Belt",
+    excerpt:
+      "Groundwater depth, recharge, and borewell risk across key taluks; how we de-risk water before you commit.",
+    date: "2025-02-05",
+    category: "Infrastructure",
+    readTime: "9 min read",
+    content: [
+      "Investors underestimate water more than title. Our bore logs in Polur show steady yields at 220–260 ft with TDS ~650 ppm; Kalasapakkam stretches to 280–320 ft and tapers in late summer; Chengam has shallow hits but wild seasonal swings.",
+      "## Tests we actually run",
+      "Step-drawdown for 3 hours with recovery curves, TDS and hardness checks. If a site cannot sustain 1.5–2 inch discharge for 4 hours in March, we drop it—no matter how good the view is.",
+      "## Design for resilience",
+      "We model dual sources (existing well + new bore), 3-day storage, and drip-ready lines. For agro-forestry pitches we insist on this capex before talking appreciation.",
+      "## A recent save",
+      "A “water-rich” 4-acre plot near Meyyur failed recovery in 27 minutes. We avoided a ₹75L mistake because the seller agreed to a test before token. Bore data beats brochure claims every time.",
+    ],
+  },
+  "temple-view-legal-guardrails": {
+    title: "Temple-View Investments: Legal Guardrails Near Arunachaleswarar",
+    excerpt:
+      "Setbacks, HR&CE sensitivities, noise/traffic, and what is actually permissible around temple-view plots.",
+    date: "2025-02-07",
+    category: "Legal",
+    readTime: "8 min read",
+    content: [
+      "Temple-view is emotional, but HR&CE and local bodies watch closely. We classify plots by distance from the Girivalam path and any HR&CE-controlled parcels.",
+      "## What’s actually allowed",
+      "Inside the immediate influence zone: low-rise, quiet use only. Beyond 1–2 km: farmhouses/wellness stays are feasible if zoning aligns. We never promise “resort potential” without a zoning check.",
+      "## Pitfalls we see",
+      "Unapproved layouts marketed as “temple view”, missing cart-track rights, and setbacks ignored. We run EC specifically looking for HR&CE entries and verify right-of-way in writing before mentioning the view in any collateral.",
+      "## Example",
+      "A plot 1.4 km off the Girivalam route had a beautiful line of sight—but a 9 ft access shared with four families. We drafted and registered a wider ROW first; only then did we market it.",
+    ],
+  },
+  "nri-playbook-tn-land": {
+    title: "NRI Playbook: Registering Tamil Nadu Land Without Flying In",
+    excerpt:
+      "PoA, apostille, remittance trail, KYC, and on-ground execution—how we close land deals for NRIs end to end.",
+    date: "2025-02-09",
+    category: "Process",
+    readTime: "9 min read",
+    content: [
+      "We recently closed a 6-acre buy for a client in Sydney without them boarding a flight. The backbone was a watertight PoA and an auditable money trail.",
+      "## Documentation that works",
+      "PoA: notarised + apostilled, property described clearly, authority to present for registration. PAN is mandatory; Aadhaar helps for e-stamp but isn’t essential.",
+      "## Money trail",
+      "Funds via NRE/NRO with FIRC retained; we attach FIRC to the sale deed bundle so repatriation is clean later. No mixed accounts, no cash components—ever.",
+      "## Execution flow",
+      "Draft deed vetted by counsel, token escrowed, PoA holder at SRO with originals, buyer on video for final confirmation. Post-registration we mutate and link utilities before the client even books flights.",
+    ],
+  },
+  "agri-to-industrial-kallakurichi-timeline": {
+    title: "Agriculture to Industrial Conversion in Kallakurichi: Month-by-Month Timeline",
+    excerpt:
+      "Realistic SLAs, offices involved, documents, and objection handling for agri-to-industrial conversion.",
+    date: "2025-02-11",
+    category: "Legal",
+    readTime: "10 min read",
+    content: [
+      "We plan for 6–9 months in Kallakurichi when the sequence is tight. The last conversion we guided wrapped in a little over 7 months because objections were pre-answered.",
+      "## Month-by-month reality",
+      "Month 1: dossier (FMB, adangal, 30-year EC, topo, tentative layout). Month 2–3: file at Collectorate; expect site inspections. Month 4–5: objections/clarifications—we attach access-road proof and water plan upfront to blunt them. Month 6–7: fees, order issuance. We carry a 60-day buffer for surprises.",
+      "## Common objections and our pre-empts",
+      "Access width, water source, power load. We include a third-party water study and TNEB load letter template at filing; it has cut one full objection cycle in our last two files.",
+    ],
+  },
+  "nh77-nh79-road-projects-thiruvannamalai": {
+    title: "Road Projects Moving Land Prices: NH77/NH79 & Feeders Around Thiruvannamalai",
+    excerpt:
+      "Upcoming road work, milestones, and which villages gain first from NH77/NH79 and feeder improvements.",
+    date: "2025-02-13",
+    category: "Infrastructure",
+    readTime: "8 min read",
+    content: [
+      "Absorption follows road work, not announcements. We track NH77/NH79 packages plus the feeder upgrades that really open access.",
+      "## What’s moving now",
+      "Widening near Chengam with culvert work already bid out; feeder upgrades toward Polur showing on-ground stone stacking; planned truck bays on NH77 at two locations locals already talk about. Villages with two-sided access (state highway + feeder) move first.",
+      "## Investor takeaway",
+      "Underwrite appreciation only where work is funded and contractors mobilised. We ignore “proposal” corridors until bids are awarded and marked on site.",
+    ],
+  },
+  "title-defects-we-blocked-thiruvannamalai": {
+    title: "Due Diligence War Stories: Title Defects We Blocked in Thiruvannamalai",
+    excerpt:
+      "Five real defects we stopped before money moved—what to check and how to structure deals safely.",
+    date: "2025-02-15",
+    category: "Due Diligence",
+    readTime: "9 min read",
+    content: [
+      "We’ve stopped more deals than we’ve closed. Five recent saves:",
+      "## 1) Undisclosed heir in Canada",
+      "Legal heir certificate missed a son abroad; we caught it by matching old school transfer certificates. We insisted on a fresh LHC before any token moved.",
+      "## 2) Layered PoAs",
+      "Three PoAs in 18 months on the same survey number. We paused until the principal appeared in person and revoked the middle PoAs.",
+      "## 3) Misaligned sub-division",
+      "Sale deed cited a sub-division not reflected in adangal. We forced a re-survey + mutation before negotiation resumed.",
+      "## 4) Access right not on paper",
+      "Cart-track access was only verbal. We drafted and registered a right-of-way; without it the deal was off.",
+      "## 5) Silent acquisition notice",
+      "A Section 15 notice sat in taluk records for a minor road project. We found it during revenue search; the buyer thanked us for walking away.",
+    ],
+  },
 };
 
 const InsightDetail = () => {
   const { t } = useTranslation();
-  const { slug } = useParams<{ slug: string }>();
-  const { pathname } = useLocation();
+  const params = useParams<{ slug: string }>();
+  const pathname = usePathname();
+  const slug = params?.slug as string | undefined;
   const article = slug ? articlesContent[slug] : null;
 
   const formatDate = (dateString: string) => {
@@ -135,7 +279,7 @@ const InsightDetail = () => {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <h1 className="heading-secondary mb-4">{t("insights.detail.notFound.title")}</h1>
-            <Link to="/insights" className="text-primary hover:underline">
+            <Link href="/insights" className="text-primary hover:underline">
               {t("insights.detail.notFound.link")}
             </Link>
           </div>
@@ -191,7 +335,7 @@ const InsightDetail = () => {
             className="max-w-3xl mx-auto"
           >
             <Link
-              to="/insights"
+              href="/insights"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -248,10 +392,10 @@ const InsightDetail = () => {
               {t("insights.detail.continue.title")}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/insights" className="btn-outline">
+              <Link href="/insights" className="btn-outline">
                 {t("insights.detail.continue.more")}
               </Link>
-              <Link to="/contact" className="btn-primary">
+              <Link href="/contact" className="btn-primary">
                 {t("insights.detail.continue.contact")}
               </Link>
             </div>

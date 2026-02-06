@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { MapPin, Maximize2, ArrowRight } from "lucide-react";
@@ -31,7 +33,7 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
       transition={{ delay: index * 0.1, duration: 0.4 }}
     >
       <Link
-        to={`/properties/${property.slug}`}
+        href={`/properties/${property.slug}`}
         className="group block"
       >
         {/* Image */}

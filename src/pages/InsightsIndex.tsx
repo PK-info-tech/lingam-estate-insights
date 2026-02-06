@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 interface InsightArticle {
@@ -14,30 +16,23 @@ interface InsightArticle {
 
 const InsightsIndex = () => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   
   const articles: InsightArticle[] = [
-    {
-      slug: "chennai-bengaluru-corridor-impact",
-      date: "2025-01-15",
-      readTime: "8 min read",
-    },
-    {
-      slug: "agricultural-land-conversion-guide",
-      date: "2024-12-20",
-      readTime: "12 min read",
-    },
-    {
-      slug: "logistics-warehousing-opportunity",
-      date: "2024-11-28",
-      readTime: "10 min read",
-    },
-    {
-      slug: "title-verification-essentials",
-      date: "2024-10-15",
-      readTime: "15 min read",
-    },
+    { slug: "chennai-bengaluru-corridor-impact", date: "2025-01-15", readTime: "8 min read" },
+    { slug: "agricultural-land-conversion-guide", date: "2024-12-20", readTime: "12 min read" },
+    { slug: "logistics-warehousing-opportunity", date: "2024-11-28", readTime: "10 min read" },
+    { slug: "title-verification-essentials", date: "2024-10-15", readTime: "15 min read" },
+    { slug: "patta-chitta-ec-checklist-thiruvannamalai", date: "2025-02-01", readTime: "11 min read" },
+    { slug: "kallakurichi-industrial-logistics-map", date: "2025-02-03", readTime: "10 min read" },
+    { slug: "water-and-borewell-arunachala-belt", date: "2025-02-05", readTime: "9 min read" },
+    { slug: "temple-view-legal-guardrails", date: "2025-02-07", readTime: "8 min read" },
+    { slug: "nri-playbook-tn-land", date: "2025-02-09", readTime: "9 min read" },
+    { slug: "agri-to-industrial-kallakurichi-timeline", date: "2025-02-11", readTime: "10 min read" },
+    { slug: "nh77-nh79-road-projects-thiruvannamalai", date: "2025-02-13", readTime: "8 min read" },
+    { slug: "title-defects-we-blocked-thiruvannamalai", date: "2025-02-15", readTime: "9 min read" },
   ];
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -109,7 +104,7 @@ const InsightsIndex = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Link
-                  to={`/insights/${article.slug}`}
+                  href={`/insights/${article.slug}`}
                   className="block group"
                 >
                   <div className="flex items-center gap-4 mb-4">

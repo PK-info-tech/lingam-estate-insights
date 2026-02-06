@@ -1,4 +1,7 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -8,8 +11,9 @@ import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const RegionDetail = () => {
   const { t } = useTranslation();
-  const { slug } = useParams<{ slug: string }>();
-  const { pathname } = useLocation();
+  const params = useParams<{ slug: string }>();
+  const pathname = usePathname();
+  const slug = params?.slug as string | undefined;
   
   if (!slug || !["thiruvannamalai", "kallakurichi", "villupuram", "sankarapuram"].includes(slug)) {
     return (
@@ -18,7 +22,7 @@ const RegionDetail = () => {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <h1 className="heading-secondary mb-4">{t("regions.detail.notFound.title")}</h1>
-            <Link to="/regions" className="text-primary hover:underline">
+            <Link href="/regions" className="text-primary hover:underline">
               {t("regions.detail.notFound.link")}
             </Link>
           </div>
@@ -68,7 +72,7 @@ const RegionDetail = () => {
             transition={{ duration: 0.5 }}
           >
             <Link
-              to="/regions"
+              href="/regions"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -182,7 +186,7 @@ const RegionDetail = () => {
             <p className="body-base text-white/60 mb-12 max-w-lg mx-auto">
               {t("regions.detail.cta.subtitle")}
             </p>
-            <Link to="/contact" className="btn-primary">
+            <Link href="/contact" className="btn-primary">
               {t("regions.detail.cta.button")}
             </Link>
           </motion.div>

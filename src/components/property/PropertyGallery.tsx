@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
@@ -168,13 +170,13 @@ export const PropertyGallery = ({ images, className }: PropertyGalleryProps) => 
                 key={currentIndex}
                 src={images[currentIndex].src}
                 alt={images[currentIndex].alt[currentLang] || images[currentIndex].alt.en}
-                className="max-w-full max-h-full object-contain"
-                loading="eager"
-                decoding="async"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2 }}
-              />
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+              decoding="async"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+            />
             </div>
 
             {/* Image Info */}

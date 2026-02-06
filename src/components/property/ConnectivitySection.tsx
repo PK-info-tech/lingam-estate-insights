@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 import { MapPin, Clock, Route, Train } from "lucide-react";
 import { motion } from "framer-motion";

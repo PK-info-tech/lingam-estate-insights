@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 import { MapPin, Maximize2, Calendar } from "lucide-react";
 import type { Property } from "@/data/properties";

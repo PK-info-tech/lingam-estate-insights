@@ -1,15 +1,17 @@
+"use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { Mail, MapPin } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const Contact = () => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -18,14 +20,28 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setErrorMessage("");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        throw new Error(data?.error || "Failed to send message.");
+      }
+      setIsSubmitted(true);
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Failed to send message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,10 +90,10 @@ const Contact = () => {
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">{t("contact.email")}</p>
                     <a
-                      href="mailto:hello@lingamestate.com"
+                      href="mailto:premenaga@gmail.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      hello@lingamestate.com
+                      premenaga@gmail.com
                     </a>
                   </div>
                 </div>
@@ -111,6 +127,11 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {errorMessage && (
+                    <div className="border border-destructive/40 bg-destructive/10 p-4 text-sm text-foreground">
+                      {errorMessage}
+                    </div>
+                  )}
                   <div>
                     <label
                       htmlFor="name"

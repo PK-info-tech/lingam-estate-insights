@@ -34,21 +34,141 @@
   "regions": {
     "caption": "Regions",
     "title": "Four districts. One strategic vision.",
+    "pageTitle": "Strategic corridors in Tamil Nadu's growth belt",
+    "pageSubtitle": "Four districts positioned at the intersection of infrastructure development, industrial policy, and long-term appreciation potential.",
+    "detail": {
+      "back": "All Regions",
+      "whyItMatters": "Why it matters",
+      "connectivity": "Connectivity",
+      "potential": "Investment Potential",
+      "useCases": "Suitable For",
+      "cta": {
+        "title": "Interested in {{region}}?",
+        "subtitle": "Let's discuss how this region aligns with your investment objectives.",
+        "button": "Request Conversation"
+      },
+      "notFound": {
+        "title": "Region not found",
+        "link": "View all regions"
+      }
+    },
     "thiruvannamalai": {
       "name": "Thiruvannamalai",
-      "description": "Sacred geography meets industrial potential. The spiritual capital of Tamil Nadu is emerging as a logistics hub."
+      "description": "Sacred geography meets industrial potential. The spiritual capital of Tamil Nadu is emerging as a logistics hub.",
+      "tagline": "Sacred geography meets industrial potential",
+      "fullDescription": "Thiruvannamalai, home to the sacred Arunachaleswarar Temple, is emerging as one of Tamil Nadu's most strategically positioned districts for industrial investment. Its unique combination of spiritual tourism, agricultural productivity, and improving infrastructure connectivity makes it a compelling destination for long-term capital.",
+      "whyItMatters": "The district sits at the convergence of multiple growth drivers: the Chennai-Bengaluru Industrial Corridor, improved national highway connectivity, and Tamil Nadu's industrial policy incentives. Land values remain significantly below Chennai's suburban markets while appreciation potential remains strong.",
+      "connectivity": [
+        "NH-48 providing direct access to Chennai (180 km) and Bengaluru (200 km)",
+        "Proposed Chennai-Salem expressway will further reduce travel times",
+        "Railway connectivity via Thiruvannamalai Junction",
+        "Proximity to Kancheepuram and Vellore industrial zones"
+      ],
+      "potential": [
+        "Industrial land prices 60-70% lower than Chennai suburbs",
+        "Strong appreciation trajectory as infrastructure improves",
+        "Government incentives for industrial development",
+        "Abundant water resources for manufacturing"
+      ],
+      "useCases": [
+        "Light manufacturing and assembly",
+        "Food and agri-processing",
+        "Warehousing and logistics",
+        "Educational and healthcare institutions"
+      ]
     },
     "kallakurichi": {
       "name": "Kallakurichi",
-      "description": "Newly formed district with untapped agricultural and industrial land at compelling valuations."
+      "description": "Newly formed district with untapped agricultural and industrial land at compelling valuations.",
+      "tagline": "Untapped potential at compelling valuations",
+      "fullDescription": "Kallakurichi, carved out as a separate district in 2019, represents one of Tamil Nadu's most intriguing early-stage investment opportunities. With extensive agricultural land, emerging infrastructure, and valuations that reflect its nascent development stage, the district offers significant upside for patient capital.",
+      "whyItMatters": "As a newly formed district, Kallakurichi is receiving focused administrative attention and infrastructure investment. The district's agricultural productivity, combined with improving connectivity, positions it well for agri-processing and light industrial development.",
+      "connectivity": [
+        "NH-79 connecting to Salem and Villupuram",
+        "Proximity to the Chennai-Salem expressway corridor",
+        "State highway connectivity to Pondicherry and Cuddalore",
+        "Planned railway line extensions"
+      ],
+      "potential": [
+        "Lowest land valuations among the four target districts",
+        "Newly formed district with focused development attention",
+        "Strong agricultural base for processing industries",
+        "Emerging educational infrastructure"
+      ],
+      "useCases": [
+        "Agri-processing and cold storage",
+        "Food packaging and processing",
+        "Renewable energy installations",
+        "Educational campuses"
+      ]
     },
     "villupuram": {
       "name": "Villupuram",
-      "description": "Key railway junction with excellent Chennai connectivity. Positioned for warehousing and manufacturing."
+      "description": "Key railway junction with excellent Chennai connectivity. Positioned for warehousing and manufacturing.",
+      "tagline": "Railway junction with Chennai connectivity",
+      "fullDescription": "Villupuram's strategic importance stems from its position as a major railway junction and its proximity to both Chennai and Puducherry. The district has a well-established industrial presence and continues to attract manufacturing and logistics investments.",
+      "whyItMatters": "Villupuram combines established infrastructure with room for growth. Its railway connectivity, highway access, and proximity to Chennai's industrial ecosystem make it an attractive destination for warehousing, manufacturing, and logistics operations.",
+      "connectivity": [
+        "Major railway junction with connections to Chennai, Trichy, and beyond",
+        "NH-45 providing direct Chennai access (160 km)",
+        "NH-66 coastal connectivity to Puducherry and beyond",
+        "East Coast Road connectivity for logistics"
+      ],
+      "potential": [
+        "Established industrial infrastructure",
+        "Strong railway and road connectivity",
+        "Proximity to Puducherry's industrial zones",
+        "Growing demand for warehousing space"
+      ],
+      "useCases": [
+        "Warehousing and distribution centers",
+        "Manufacturing and assembly",
+        "Logistics and transportation hubs",
+        "Industrial parks"
+      ]
     },
     "sankarapuram": {
       "name": "Sankarapuram",
-      "description": "Emerging taluk with infrastructure development underway. Early-stage opportunity for patient capital."
+      "description": "Emerging taluk with infrastructure development underway. Early-stage opportunity for patient capital.",
+      "tagline": "Infrastructure development underway",
+      "fullDescription": "Sankarapuram taluk, within Kallakurichi district, represents an early-stage opportunity where infrastructure development is actively underway. For investors with longer time horizons, the region offers the potential for significant appreciation as connectivity and services improve.",
+      "whyItMatters": "Sankarapuram is at the earliest stage of development among our focus areas, which translates to the most compelling entry valuations. Government infrastructure projects currently underway will transform accessibility and development potential over the coming years.",
+      "connectivity": [
+        "State highway connectivity to Kallakurichi and Villupuram",
+        "Planned road upgrades under state infrastructure programs",
+        "Developing connectivity to national highway network",
+        "Proximity to emerging industrial zones"
+      ],
+      "potential": [
+        "Entry-level valuations with maximum appreciation potential",
+        "Active government infrastructure investment",
+        "Large contiguous land parcels available",
+        "Growing interest from institutional investors"
+      ],
+      "useCases": [
+        "Solar and renewable energy parks",
+        "Large-format industrial development",
+        "Integrated townships",
+        "Agricultural modernization projects"
+      ]
+    },
+    "list": {
+      "thiruvannamalai": {
+        "tagline": "Sacred geography meets industrial potential",
+        "description": "The spiritual capital of Tamil Nadu is emerging as a key logistics and manufacturing hub, benefiting from improved highway connectivity to Chennai and Bengaluru."
+      },
+      "kallakurichi": {
+        "tagline": "Untapped potential at compelling valuations",
+        "description": "A newly formed district with extensive agricultural land and emerging industrial zones. Early-stage opportunity for strategic investors."
+      },
+      "villupuram": {
+        "tagline": "Railway junction with Chennai connectivity",
+        "description": "Major railway hub with excellent connectivity to Chennai, Puducherry, and the southern districts. Positioned for warehousing and manufacturing growth."
+      },
+      "sankarapuram": {
+        "tagline": "Infrastructure development underway",
+        "description": "Emerging taluk with significant government infrastructure investments. Early-stage opportunity for patient, long-term capital."
+      }
     }
   },
   "capabilities": {
@@ -204,146 +324,46 @@
         "title": "Essential Title Verification Steps for Land Acquisition",
         "excerpt": "A detailed walkthrough of the due diligence process required to ensure clean title and avoid common pitfalls in rural land transactions.",
         "category": "Due Diligence"
-      }
-    }
-  },
-  "regions": {
-    "caption": "Regions",
-    "title": "Four districts. One strategic vision.",
-    "pageTitle": "Strategic corridors in Tamil Nadu's growth belt",
-    "pageSubtitle": "Four districts positioned at the intersection of infrastructure development, industrial policy, and long-term appreciation potential.",
-    "detail": {
-      "back": "All Regions",
-      "whyItMatters": "Why it matters",
-      "connectivity": "Connectivity",
-      "potential": "Investment Potential",
-      "useCases": "Suitable For",
-      "cta": {
-        "title": "Interested in {{region}}?",
-        "subtitle": "Let's discuss how this region aligns with your investment objectives.",
-        "button": "Request Conversation"
       },
-      "notFound": {
-        "title": "Region not found",
-        "link": "View all regions"
-      }
-    },
-    "thiruvannamalai": {
-      "name": "Thiruvannamalai",
-      "description": "Sacred geography meets industrial potential. The spiritual capital of Tamil Nadu is emerging as a logistics hub.",
-      "tagline": "Sacred geography meets industrial potential",
-      "fullDescription": "Thiruvannamalai, home to the sacred Arunachaleswarar Temple, is emerging as one of Tamil Nadu's most strategically positioned districts for industrial investment. Its unique combination of spiritual tourism, agricultural productivity, and improving infrastructure connectivity makes it a compelling destination for long-term capital.",
-      "whyItMatters": "The district sits at the convergence of multiple growth drivers: the Chennai-Bengaluru Industrial Corridor, improved national highway connectivity, and Tamil Nadu's industrial policy incentives. Land values remain significantly below Chennai's suburban markets while appreciation potential remains strong.",
-      "connectivity": [
-        "NH-48 providing direct access to Chennai (180 km) and Bengaluru (200 km)",
-        "Proposed Chennai-Salem expressway will further reduce travel times",
-        "Railway connectivity via Thiruvannamalai Junction",
-        "Proximity to Kancheepuram and Vellore industrial zones"
-      ],
-      "potential": [
-        "Industrial land prices 60-70% lower than Chennai suburbs",
-        "Strong appreciation trajectory as infrastructure improves",
-        "Government incentives for industrial development",
-        "Abundant water resources for manufacturing"
-      ],
-      "useCases": [
-        "Light manufacturing and assembly",
-        "Food and agri-processing",
-        "Warehousing and logistics",
-        "Educational and healthcare institutions"
-      ]
-    },
-    "kallakurichi": {
-      "name": "Kallakurichi",
-      "description": "Newly formed district with untapped agricultural and industrial land at compelling valuations.",
-      "tagline": "Untapped potential at compelling valuations",
-      "fullDescription": "Kallakurichi, carved out as a separate district in 2019, represents one of Tamil Nadu's most intriguing early-stage investment opportunities. With extensive agricultural land, emerging infrastructure, and valuations that reflect its nascent development stage, the district offers significant upside for patient capital.",
-      "whyItMatters": "As a newly formed district, Kallakurichi is receiving focused administrative attention and infrastructure investment. The district's agricultural productivity, combined with improving connectivity, positions it well for agri-processing and light industrial development.",
-      "connectivity": [
-        "NH-79 connecting to Salem and Villupuram",
-        "Proximity to the Chennai-Salem expressway corridor",
-        "State highway connectivity to Pondicherry and Cuddalore",
-        "Planned railway line extensions"
-      ],
-      "potential": [
-        "Lowest land valuations among the four target districts",
-        "Newly formed district with focused development attention",
-        "Strong agricultural base for processing industries",
-        "Emerging educational infrastructure"
-      ],
-      "useCases": [
-        "Agri-processing and cold storage",
-        "Food packaging and processing",
-        "Renewable energy installations",
-        "Educational campuses"
-      ]
-    },
-    "villupuram": {
-      "name": "Villupuram",
-      "description": "Key railway junction with excellent Chennai connectivity. Positioned for warehousing and manufacturing.",
-      "tagline": "Railway junction with Chennai connectivity",
-      "fullDescription": "Villupuram's strategic importance stems from its position as a major railway junction and its proximity to both Chennai and Puducherry. The district has a well-established industrial presence and continues to attract manufacturing and logistics investments.",
-      "whyItMatters": "Villupuram combines established infrastructure with room for growth. Its railway connectivity, highway access, and proximity to Chennai's industrial ecosystem make it an attractive destination for warehousing, manufacturing, and logistics operations.",
-      "connectivity": [
-        "Major railway junction with connections to Chennai, Trichy, and beyond",
-        "NH-45 providing direct Chennai access (160 km)",
-        "NH-66 coastal connectivity to Puducherry and beyond",
-        "East Coast Road connectivity for logistics"
-      ],
-      "potential": [
-        "Established industrial infrastructure",
-        "Strong railway and road connectivity",
-        "Proximity to Puducherry's industrial zones",
-        "Growing demand for warehousing space"
-      ],
-      "useCases": [
-        "Warehousing and distribution centers",
-        "Manufacturing and assembly",
-        "Logistics and transportation hubs",
-        "Industrial parks"
-      ]
-    },
-    "sankarapuram": {
-      "name": "Sankarapuram",
-      "description": "Emerging taluk with infrastructure development underway. Early-stage opportunity for patient capital.",
-      "tagline": "Infrastructure development underway",
-      "fullDescription": "Sankarapuram taluk, within Kallakurichi district, represents an early-stage opportunity where infrastructure development is actively underway. For investors with longer time horizons, the region offers the potential for significant appreciation as connectivity and services improve.",
-      "whyItMatters": "Sankarapuram is at the earliest stage of development among our focus areas, which translates to the most compelling entry valuations. Government infrastructure projects currently underway will transform accessibility and development potential over the coming years.",
-      "connectivity": [
-        "State highway connectivity to Kallakurichi and Villupuram",
-        "Planned road upgrades under state infrastructure programs",
-        "Developing connectivity to national highway network",
-        "Proximity to emerging industrial zones"
-      ],
-      "potential": [
-        "Entry-level valuations with maximum appreciation potential",
-        "Active government infrastructure investment",
-        "Large contiguous land parcels available",
-        "Growing interest from institutional investors"
-      ],
-      "useCases": [
-        "Solar and renewable energy parks",
-        "Large-format industrial development",
-        "Integrated townships",
-        "Agricultural modernization projects"
-      ]
-    },
-    "list": {
-      "thiruvannamalai": {
-        "tagline": "Sacred geography meets industrial potential",
-        "description": "The spiritual capital of Tamil Nadu is emerging as a key logistics and manufacturing hub, benefiting from improved highway connectivity to Chennai and Bengaluru."
+      "patta-chitta-ec-checklist-thiruvannamalai": {
+        "title": "Patta, Chitta, EC: Fast-Track Checklist for Thiruvannamalai Buyers",
+        "excerpt": "Exact steps, offices, and timelines to secure patta, chitta, and EC around Arunachala—what we verify before we advise a client to proceed.",
+        "category": "Legal"
       },
-      "kallakurichi": {
-        "tagline": "Untapped potential at compelling valuations",
-        "description": "A newly formed district with extensive agricultural land and emerging industrial zones. Early-stage opportunity for strategic investors."
+      "kallakurichi-industrial-logistics-map": {
+        "title": "Kallakurichi Industrial Land: Where Logistics Actually Work",
+        "excerpt": "High-confidence pockets for warehousing and light industry in Kallakurichi, with highway access, power proximity, and realistic timelines.",
+        "category": "Infrastructure"
       },
-      "villupuram": {
-        "tagline": "Railway junction with Chennai connectivity",
-        "description": "Major railway hub with excellent connectivity to Chennai, Puducherry, and the southern districts. Positioned for warehousing and manufacturing growth."
+      "water-and-borewell-arunachala-belt": {
+        "title": "Water & Borewell Reality in the Arunachala Belt",
+        "excerpt": "Groundwater depth, recharge, and borewell risk across key taluks; how we de-risk water before you commit.",
+        "category": "Infrastructure"
       },
-      "sankarapuram": {
-        "tagline": "Infrastructure development underway",
-        "description": "Emerging taluk with significant government infrastructure investments. Early-stage opportunity for patient, long-term capital."
+      "temple-view-legal-guardrails": {
+        "title": "Temple-View Investments: Legal Guardrails Near Arunachaleswarar",
+        "excerpt": "Setbacks, HR&CE sensitivities, noise/traffic, and what is actually permissible around temple-view plots.",
+        "category": "Legal"
+      },
+      "nri-playbook-tn-land": {
+        "title": "NRI Playbook: Registering Tamil Nadu Land Without Flying In",
+        "excerpt": "PoA, apostille, remittance trail, KYC, and on-ground execution—how we close land deals for NRIs end to end.",
+        "category": "Process"
+      },
+      "agri-to-industrial-kallakurichi-timeline": {
+        "title": "Agriculture to Industrial Conversion in Kallakurichi: Month-by-Month Timeline",
+        "excerpt": "Realistic SLAs, offices involved, documents, and objection handling for agri-to-industrial conversion.",
+        "category": "Legal"
+      },
+      "nh77-nh79-road-projects-thiruvannamalai": {
+        "title": "Road Projects Moving Land Prices: NH77/NH79 & Feeders Around Thiruvannamalai",
+        "excerpt": "Upcoming road work, milestones, and which villages gain first from NH77/NH79 and feeder improvements.",
+        "category": "Infrastructure"
+      },
+      "title-defects-we-blocked-thiruvannamalai": {
+        "title": "Due Diligence War Stories: Title Defects We Blocked in Thiruvannamalai",
+        "excerpt": "Five real defects we stopped before money moved—what to check and how to structure deals safely.",
+        "category": "Due Diligence"
       }
     }
   },

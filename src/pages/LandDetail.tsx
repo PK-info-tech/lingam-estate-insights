@@ -1,4 +1,7 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -23,8 +26,9 @@ const regionLabels: Record<string, { en: string; ta: string }> = {
 const LandDetail = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as "en" | "ta";
-  const { slug } = useParams<{ slug: string }>();
-  const { pathname } = useLocation();
+  const params = useParams<{ slug: string }>();
+  const pathname = usePathname();
+  const slug = params?.slug;
   const property = slug ? getPropertyBySlug(slug) : null;
 
   if (!property) {
@@ -34,7 +38,7 @@ const LandDetail = () => {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <h1 className="heading-secondary mb-4">{t("lands.notFound")}</h1>
-            <Link to="/lands" className="text-primary hover:underline">
+            <Link href="/properties" className="text-primary hover:underline">
               {t("lands.viewAll")}
             </Link>
           </div>
@@ -56,7 +60,7 @@ const LandDetail = () => {
         structuredData={[
           buildBreadcrumbList([
             { name: SITE_NAME, url: "/" },
-            { name: "Lands", url: "/lands" },
+            { name: "Properties", url: "/properties" },
             { name: title, url: pathname },
           ]),
           {
@@ -105,7 +109,7 @@ const LandDetail = () => {
             transition={{ duration: 0.5 }}
           >
             <Link
-              to="/lands"
+              href="/properties"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -130,6 +134,8 @@ const LandDetail = () => {
                     className="w-full h-full object-cover"
                     loading="eager"
                     decoding="async"
+                    fetchPriority="high"
+                    sizes="(min-width: 1024px) 60vw, 100vw"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-secondary" />

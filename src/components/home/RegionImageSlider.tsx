@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -7,6 +9,9 @@ import farmImage from "@/assets/images/farms/paddy-fields.jpg";
 import girivamaImage from "@/assets/images/girivalam/sacred-path.jpg";
 import factoryImage from "@/assets/images/factories/industrial-facility.jpg";
 import streetImage from "@/assets/images/streets/heritage-street.jpg";
+
+const toSrc = (asset: unknown) =>
+  typeof asset === "string" ? asset : (asset as { src?: string })?.src || "";
 
 interface SlideData {
   image: string;
@@ -18,35 +23,35 @@ interface SlideData {
 
 const slides: SlideData[] = [
   {
-    image: templeImage,
+    image: toSrc(templeImage),
     title: "Sacred Heritage",
     titleTa: "புனித பாரம்பரியம்",
     subtitle: "Arunachala Temple at the heart of Thiruvannamalai",
     subtitleTa: "திருவண்ணாமலையின் இதயத்தில் அருணாசல கோயில்",
   },
   {
-    image: farmImage,
+    image: toSrc(farmImage),
     title: "Fertile Lands",
     titleTa: "வளமான நிலங்கள்",
     subtitle: "Lush paddy fields across the agricultural belt",
     subtitleTa: "விவசாய வளையத்தில் பசுமையான நெல் வயல்கள்",
   },
   {
-    image: girivamaImage,
+    image: toSrc(girivamaImage),
     title: "Girivalam Path",
     titleTa: "கிரிவலம் பாதை",
     subtitle: "Ancient pilgrimage route around the sacred hill",
     subtitleTa: "புனித மலையைச் சுற்றிய பழமையான புனித பாதை",
   },
   {
-    image: factoryImage,
+    image: toSrc(factoryImage),
     title: "Industrial Growth",
     titleTa: "தொழில்துறை வளர்ச்சி",
     subtitle: "Modern manufacturing facilities taking shape",
     subtitleTa: "நவீன உற்பத்தி வசதிகள் வடிவம் பெறுகின்றன",
   },
   {
-    image: streetImage,
+    image: toSrc(streetImage),
     title: "Heritage Towns",
     titleTa: "பாரம்பரிய நகரங்கள்",
     subtitle: "Charming streets with rich cultural history",

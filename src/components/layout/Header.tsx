@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -59,7 +61,7 @@ export const Header = () => {
           <nav className="flex items-center justify-between h-20 md:h-24">
             {/* Logo */}
             <Link
-              to="/"
+              href="/"
               className="font-display text-xl md:text-2xl tracking-tight text-foreground hover:text-primary transition-colors duration-300"
             >
               Lingam Estate
@@ -70,7 +72,7 @@ export const Header = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  to={link.href}
+                  href={link.href}
                   className="text-sm tracking-wide text-foreground/70 hover:text-foreground link-underline transition-colors duration-300"
                 >
                   {t(link.labelKey)}
@@ -78,7 +80,7 @@ export const Header = () => {
               ))}
               <LanguageSwitcher />
               <Link
-                to="/contact"
+                href="/contact"
                 className="btn-luxury px-6 py-3 border border-foreground/20 text-foreground hover:bg-foreground hover:text-background text-xs"
               >
                 {t("nav.contact")}
@@ -125,7 +127,7 @@ export const Header = () => {
                   transition={{ delay: shouldReduceMotion ? 0 : index * 0.1 }}
                 >
                   <Link
-                    to={link.href}
+                    href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="font-display text-3xl text-foreground"
                     ref={index === 0 ? firstMobileLinkRef : undefined}
@@ -142,7 +144,7 @@ export const Header = () => {
                 className="pt-8"
               >
                 <Link
-                  to="/contact"
+                  href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="btn-primary"
                   role="menuitem"

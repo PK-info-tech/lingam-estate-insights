@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Phone } from "lucide-react";
 
@@ -22,14 +24,14 @@ export const PropertyCTA = ({ propertyTitle, className }: PropertyCTAProps) => {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
-            to={`/contact?property=${encodeURIComponent(propertyTitle)}`}
+            href={`/contact?property=${encodeURIComponent(propertyTitle)}`}
             className="btn-primary inline-flex items-center justify-center gap-2"
           >
             {t("property.cta")}
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
-            href="tel:+919876543210"
+            href="tel:+918825962425"
             className="btn-outline inline-flex items-center justify-center gap-2"
           >
             <Phone className="w-4 h-4" />

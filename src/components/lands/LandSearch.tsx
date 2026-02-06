@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Search, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -15,7 +17,7 @@ interface SearchFilters {
 
 export const LandSearch = ({ variant = "hero" }: { variant?: "hero" | "page" }) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [filters, setFilters] = useState<SearchFilters>({
     location: "",
     landType: "",
@@ -34,7 +36,7 @@ export const LandSearch = ({ variant = "hero" }: { variant?: "hero" | "page" }) 
     if (filters.budgetMax) params.set("budgetMax", filters.budgetMax);
     if (filters.sizeMin) params.set("sizeMin", filters.sizeMin);
     if (filters.sizeMax) params.set("sizeMax", filters.sizeMax);
-    navigate(`/lands?${params.toString()}`);
+    router.push(`/properties?${params.toString()}`);
   };
 
   const isHero = variant === "hero";
@@ -149,6 +151,3 @@ export const LandSearch = ({ variant = "hero" }: { variant?: "hero" | "page" }) 
     </motion.form>
   );
 };
-
-
-

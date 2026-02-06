@@ -1,5 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
@@ -7,7 +10,7 @@ import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const About = () => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   
   const values = [
     {
@@ -142,7 +145,7 @@ const About = () => {
             <p className="body-base text-white/60 mb-12 max-w-lg mx-auto">
               {t("about.cta.subtitle")}
             </p>
-            <Link to="/contact" className="btn-primary">
+            <Link href="/contact" className="btn-primary">
               {t("about.cta.button")}
             </Link>
           </motion.div>

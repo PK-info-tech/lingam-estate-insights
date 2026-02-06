@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
@@ -25,7 +27,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-5">
             <Link
-              to="/"
+              href="/"
               className="font-display text-2xl text-white tracking-tight"
             >
               Lingam Estate
@@ -42,7 +44,7 @@ export const Footer = () => {
               {footerLinks.regions.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-white/70 hover:text-white transition-colors duration-300"
                   >
                     {t(link.labelKey)}
@@ -59,7 +61,7 @@ export const Footer = () => {
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-white/70 hover:text-white transition-colors duration-300"
                   >
                     {t(link.labelKey)}

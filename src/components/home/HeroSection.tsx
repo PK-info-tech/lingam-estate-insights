@@ -1,5 +1,8 @@
+"use client";
+
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import heroImage from "@/assets/hero-landscape.jpg";
 
@@ -10,13 +13,14 @@ export const HeroSection = () => {
     <section className="relative min-h-screen flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src={heroImage}
           alt="Tamil Nadu landscape at golden hour"
-          className="img-cover"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          placeholder="blur"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/70 via-charcoal/40 to-transparent" />
       </div>
@@ -58,18 +62,19 @@ export const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <Link
-              to="/lands"
+              href="/properties"
               className="btn-luxury bg-primary text-primary-foreground hover:bg-primary/90"
             >
               {t("hero.searchLands")}
             </Link>
             <Link
-              to="/contact"
+              href="/contact"
               className="btn-luxury border border-white/30 text-white hover:bg-white/10"
             >
               {t("hero.cta")}
             </Link>
           </motion.div>
+
         </div>
       </div>
 

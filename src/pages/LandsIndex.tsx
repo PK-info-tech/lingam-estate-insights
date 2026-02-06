@@ -1,4 +1,6 @@
-import { useSearchParams } from "react-router-dom";
+"use client";
+
+import { useSearchParams, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
@@ -6,13 +8,12 @@ import { LandSearch } from "@/components/lands/LandSearch";
 import { PropertyCard } from "@/components/lands/PropertyCard";
 import { getFilteredProperties, properties } from "@/data/properties";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const LandsIndex = () => {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
-  const { pathname } = useLocation();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   
   // For now, return all properties. Filtering can be enhanced later
   // const filters = {
@@ -104,4 +105,3 @@ const LandsIndex = () => {
 };
 
 export default LandsIndex;
-

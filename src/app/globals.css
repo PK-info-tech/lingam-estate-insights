@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Luxury warm palette */
+    --background: 40 20% 98%;
+    --foreground: 30 10% 12%;
+    
+    --card: 40 15% 96%;
+    --card-foreground: 30 10% 12%;
+    
+    --popover: 40 20% 98%;
+    --popover-foreground: 30 10% 12%;
+    
+    /* Red Damask - primary accent */
+    --primary: 21 69% 54%;
+    --primary-foreground: 40 20% 98%;
+    
+    /* Warm stone secondary */
+    --secondary: 35 15% 92%;
+    --secondary-foreground: 30 10% 25%;
+    
+    /* Muted warm grays */
+    --muted: 35 10% 90%;
+    --muted-foreground: 30 8% 45%;
+    
+    /* Subtle accent */
+    --accent: 35 20% 94%;
+    --accent-foreground: 30 10% 20%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 35 15% 88%;
+    --input: 35 15% 88%;
+    --ring: 21 69% 54%;
+    
+    --radius: 0.25rem;
+    
+    /* Custom luxury tokens */
+    --cream: 45 30% 96%;
+    --stone: 35 8% 75%;
+    --charcoal: 30 10% 18%;
+    --warm-white: 40 25% 99%;
+    
+    /* Typography scale (self-host ready; falls back to system until local files provided) */
+    --font-display: "Playfair Display", "Times New Roman", Georgia, serif;
+    --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    
+    /* Spacing scale */
+    --section-padding: 6rem;
+    --container-max: 1280px;
+    
+    /* Transitions */
+    --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 40 15% 95%;
+    
+    --card: 30 10% 12%;
+    --card-foreground: 40 15% 95%;
+    
+    --popover: 30 10% 10%;
+    --popover-foreground: 40 15% 95%;
+    
+    --primary: 21 69% 54%;
+    --primary-foreground: 40 20% 98%;
+    
+    --secondary: 30 8% 18%;
+    --secondary-foreground: 40 15% 90%;
+    
+    --muted: 30 8% 20%;
+    --muted-foreground: 35 10% 60%;
+    
+    --accent: 30 8% 15%;
+    --accent-foreground: 40 15% 95%;
+    
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 30 8% 20%;
+    --input: 30 8% 20%;
+    --ring: 21 69% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Typography scale */
+  .heading-display {
+    font-family: var(--font-display);
+    @apply text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight;
+    line-height: 1.05;
+  }
+  
+  .heading-primary {
+    font-family: var(--font-display);
+    @apply text-4xl md:text-5xl font-medium tracking-tight;
+    line-height: 1.1;
+  }
+  
+  .heading-secondary {
+    font-family: var(--font-display);
+    @apply text-3xl md:text-4xl font-medium;
+    line-height: 1.15;
+  }
+  
+  .heading-tertiary {
+    font-family: var(--font-display);
+    @apply text-2xl md:text-3xl font-medium;
+    line-height: 1.2;
+  }
+  
+  .body-large {
+    @apply text-lg md:text-xl;
+    line-height: 1.7;
+  }
+  
+  .body-base {
+    @apply text-base;
+    line-height: 1.7;
+  }
+  
+  .body-small {
+    @apply text-sm;
+    line-height: 1.6;
+  }
+  
+  .caption {
+    @apply text-xs uppercase tracking-widest font-medium;
+    letter-spacing: 0.15em;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-luxury {
+    @apply w-full mx-auto px-6 md:px-8 lg:px-12;
+    max-width: var(--container-max);
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+  
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  /* Luxury button base */
+  .btn-luxury {
+    @apply inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide uppercase transition-all duration-300;
+    letter-spacing: 0.1em;
+  }
+  
+  .btn-primary {
+    @apply btn-luxury bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+  
+  .btn-outline {
+    @apply btn-luxury border border-foreground/20 text-foreground hover:bg-foreground hover:text-background;
+  }
+  
+  .btn-ghost {
+    @apply btn-luxury text-foreground hover:text-primary;
+  }
+  
+  /* Divider */
+  .divider-luxury {
+    @apply w-16 h-px bg-primary/40;
+  }
+  
+  /* Link underline effect */
+  .link-underline {
+    @apply relative;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+  }
+  
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+  
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Prose styling for blog */
+  .prose-luxury {
+    @apply text-foreground/85;
+  }
+  
+  .prose-luxury h2 {
+    font-family: var(--font-display);
+    @apply text-3xl font-medium mt-16 mb-6 text-foreground;
+  }
+  
+  .prose-luxury h3 {
+    font-family: var(--font-display);
+    @apply text-2xl font-medium mt-12 mb-4 text-foreground;
+  }
+  
+  .prose-luxury p {
+    @apply mb-6 leading-relaxed;
+  }
+  
+  .prose-luxury ul, .prose-luxury ol {
+    @apply mb-6 ml-6;
+  }
+  
+  .prose-luxury li {
+    @apply mb-2;
+  }
+  
+  .prose-luxury blockquote {
+    @apply border-l-2 border-primary/40 pl-6 italic my-8 text-foreground/70;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Stagger delay utilities */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  
+  /* Image cover */
+  .img-cover {
+    @apply w-full h-full object-cover;
+  }
+  
+  /* Aspect ratios */
+  .aspect-hero {
+    aspect-ratio: 16/9;
+  }
+  
+  .aspect-portrait {
+    aspect-ratio: 3/4;
+  }
+  
+  .aspect-landscape {
+    aspect-ratio: 4/3;
+  }
+}

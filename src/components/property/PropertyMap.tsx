@@ -1,7 +1,10 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MapPin, Maximize2, Minimize2, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useInView } from "framer-motion";
 import type { Property } from "@/data/properties";
 
 interface PropertyMapProps {
@@ -25,11 +28,14 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
   const cityMarkersRef = useRef<Record<string, L.Marker>>({});
   const distanceMarkersRef = useRef<L.Marker[]>([]);
   const lastPropertySlugRef = useRef<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "200px" });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const currentLang = i18n.language as "en" | "ta";
 
   useEffect(() => {
+    if (!isInView) return;
     // Dynamically import Leaflet
     const loadMap = async () => {
       setMapLoaded(false);
@@ -147,7 +153,7 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
         lastPropertySlugRef.current = null;
       }
     };
-  }, [property]);
+  }, [property, isInView]);
 
   useEffect(() => {
     if (!leafletRef.current) return;
@@ -174,7 +180,7 @@ export const PropertyMap = ({ property, className }: PropertyMapProps) => {
   }, [isFullscreen]);
 
   return (
-    <div className={cn("relative", className)}>
+    <div ref={containerRef} className={cn("relative", className)}>
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-display text-2xl">{t("property.map")}</h2>
         <button

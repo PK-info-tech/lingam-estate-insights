@@ -1,8 +1,13 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import architectureImage from "@/assets/abstract-architecture.jpg";
+
+const architectureSrc =
+  typeof architectureImage === "string" ? architectureImage : (architectureImage as { src?: string }).src || "";
 
 export const CTASection = () => {
   const { t } = useTranslation();
@@ -25,7 +30,7 @@ export const CTASection = () => {
             <p className="body-base text-foreground/70 mb-12 max-w-md">
               {t("cta.subtitle")}
             </p>
-            <Link to="/contact" className="btn-primary">
+            <Link href="/contact" className="btn-primary">
               {t("cta.button")}
             </Link>
           </motion.div>
@@ -39,7 +44,7 @@ export const CTASection = () => {
           >
             <div className="aspect-portrait overflow-hidden">
               <img
-                src={architectureImage}
+                src={architectureSrc}
                 alt="Abstract architectural detail"
                 className="img-cover"
                 loading="lazy"

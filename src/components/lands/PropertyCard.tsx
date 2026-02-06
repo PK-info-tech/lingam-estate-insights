@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -31,7 +33,7 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
       className="group"
     >
       <Link
-        to={`/lands/${property.slug}`}
+        href={`/properties/${property.slug}`}
         className="block bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-all duration-300"
       >
         {/* Image */}
@@ -94,4 +96,3 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
     </motion.article>
   );
 };
-

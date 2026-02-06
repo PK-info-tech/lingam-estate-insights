@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -6,12 +8,12 @@ import { SEO } from "@/components/SEO";
 import { PropertyFilters, PropertyGrid } from "@/components/property";
 import { properties, getFilteredProperties } from "@/data/properties";
 import type { Region, UseCase, VerificationStatus } from "@/data/properties";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const PropertiesIndex = () => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   const [selectedRegion, setSelectedRegion] = useState<Region | undefined>();
   const [selectedUseCase, setSelectedUseCase] = useState<UseCase | undefined>();

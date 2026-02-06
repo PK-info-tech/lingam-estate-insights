@@ -1,16 +1,20 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import regionImage from "@/assets/region-thiruvannamalai.jpg";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
 
 const RegionsIndex = () => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
+  const regionImgSrc =
+    typeof regionImage === "string" ? regionImage : (regionImage as { src?: string })?.src || "";
   
   const regions = [
     {
@@ -83,7 +87,7 @@ const RegionsIndex = () => {
             className="aspect-hero overflow-hidden"
           >
             <img
-              src={regionImage}
+              src={regionImgSrc}
               alt="Tamil Nadu countryside"
               className="img-cover"
               loading="lazy"
@@ -105,7 +109,7 @@ const RegionsIndex = () => {
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
               >
                 <Link
-                  to={`/regions/${region.slug}`}
+                  href={`/regions/${region.slug}`}
                   className="block bg-background p-8 md:p-12 group hover:bg-accent transition-colors duration-300"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center">

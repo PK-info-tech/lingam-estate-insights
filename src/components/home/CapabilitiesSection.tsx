@@ -1,7 +1,12 @@
+"use client";
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import industrialImage from "@/assets/industrial-potential.jpg";
+
+const industrialSrc =
+  typeof industrialImage === "string" ? industrialImage : (industrialImage as { src?: string }).src || "";
 
 const capabilityKeys = ["industrial", "logistics", "agri", "renewable", "residential", "mixed"];
 
@@ -23,7 +28,7 @@ export const CapabilitiesSection = () => {
           >
             <div className="aspect-landscape overflow-hidden">
               <img
-                src={industrialImage}
+                src={industrialSrc}
                 alt="Industrial development potential"
                 className="img-cover"
                 loading="lazy"

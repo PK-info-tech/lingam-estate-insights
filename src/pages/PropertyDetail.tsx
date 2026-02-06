@@ -1,4 +1,7 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
@@ -23,10 +26,11 @@ const regionLabels: Record<string, { en: string; ta: string }> = {
 };
 
 const PropertyDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams<{ slug: string }>();
   const { t, i18n } = useTranslation();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const currentLang = i18n.language as "en" | "ta";
+  const slug = params?.slug;
 
   const property = slug ? getPropertyBySlug(slug) : undefined;
 
@@ -36,7 +40,7 @@ const PropertyDetail = () => {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <h1 className="heading-secondary mb-4">{t("property.notFound")}</h1>
-            <Link to="/properties" className="text-primary hover:underline">
+            <Link href="/properties" className="text-primary hover:underline">
               {t("property.backToCollection")}
             </Link>
           </div>
@@ -107,7 +111,7 @@ const PropertyDetail = () => {
       <div className="pt-28 md:pt-32">
         <div className="container-luxury">
           <Link
-            to="/properties"
+            href="/properties"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />

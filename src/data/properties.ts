@@ -1,3 +1,4 @@
+import { z } from "zod";
 // Import images
 import paddyFieldsImage from "@/assets/images/farms/paddy-fields.jpg";
 import arunachalaTempleImage from "@/assets/images/temples/arunachala-temple.jpg";
@@ -5,78 +6,81 @@ import heritageStreetImage from "@/assets/images/streets/heritage-street.jpg";
 import industrialFacilityImage from "@/assets/images/factories/industrial-facility.jpg";
 
 // Property Types
-export type Region = "thiruvannamalai" | "kallakurichi" | "villupuram" | "sankarapuram";
-export type VerificationStatus = "not_verified" | "in_progress" | "verified";
-export type BuyerProgressStage = "listed" | "interest" | "token" | "sold";
-export type UseCase = "residential" | "agriculture" | "industrial" | "mixed_use";
-export type ImageCategory = "land" | "road" | "landmark" | "lifestyle";
+export const regionValues = ["thiruvannamalai", "kallakurichi", "villupuram", "sankarapuram"] as const;
+export const verificationValues = ["not_verified", "in_progress", "verified"] as const;
+export const buyerProgressValues = ["listed", "interest", "token", "sold"] as const;
+export const useCaseValues = ["residential", "agriculture", "industrial", "mixed_use"] as const;
+export const imageCategoryValues = ["land", "road", "landmark", "lifestyle"] as const;
 
-export interface PropertyImage {
-  src: string;
-  alt: {
-    en: string;
-    ta: string;
-  };
-  category: ImageCategory;
-}
+export type Region = (typeof regionValues)[number];
+export type VerificationStatus = (typeof verificationValues)[number];
+export type BuyerProgressStage = (typeof buyerProgressValues)[number];
+export type UseCase = (typeof useCaseValues)[number];
+export type ImageCategory = (typeof imageCategoryValues)[number];
 
-export interface Connectivity {
-  distance: string;
-  time: string;
-}
+const localizedTextSchema = z.object({
+  en: z.string(),
+  ta: z.string(),
+});
 
-export interface BuyerProgress {
-  stage: BuyerProgressStage;
-  interestedBuyers?: number;
-}
+const propertyImageSchema = z.object({
+  src: z.string(),
+  alt: localizedTextSchema,
+  category: z.enum(imageCategoryValues),
+});
 
-export interface Property {
-  id: string;
-  slug: string;
-  title: {
-    en: string;
-    ta: string;
-  };
-  tagline: {
-    en: string;
-    ta: string;
-  };
-  region: Region;
-  area: {
-    value: number;
-    unit: "acres" | "cents";
-  };
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  verification: VerificationStatus;
-  buyerProgress: BuyerProgress;
-  overview: {
-    en: string;
-    ta: string;
-  };
-  useCases: UseCase[];
-  useCaseDetails: {
-    [key in UseCase]?: {
-      en: string;
-      ta: string;
-    };
-  };
-  connectivity: {
-    chennai: Connectivity;
-    bengaluru: Connectivity;
-    salem: Connectivity;
-    nearestHighway?: string;
-    nearestRailway?: string;
-  };
-  images: PropertyImage[];
-  createdAt: string;
-  updatedAt: string;
-}
+const connectivitySchema = z.object({
+  distance: z.string(),
+  time: z.string(),
+});
+
+const buyerProgressSchema = z.object({
+  stage: z.enum(buyerProgressValues),
+  interestedBuyers: z.number().int().nonnegative().optional(),
+});
+
+export const propertySchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  title: localizedTextSchema,
+  tagline: localizedTextSchema,
+  region: z.enum(regionValues),
+  area: z.object({
+    value: z.number(),
+    unit: z.enum(["acres", "cents"]),
+  }),
+  coordinates: z.object({
+    lat: z.number(),
+    lng: z.number(),
+  }),
+  verification: z.enum(verificationValues),
+  buyerProgress: buyerProgressSchema,
+  overview: localizedTextSchema,
+  useCases: z.array(z.enum(useCaseValues)),
+  useCaseDetails: z
+    .object({
+      residential: localizedTextSchema.optional(),
+      agriculture: localizedTextSchema.optional(),
+      industrial: localizedTextSchema.optional(),
+      mixed_use: localizedTextSchema.optional(),
+    })
+    .default({}),
+  connectivity: z.object({
+    chennai: connectivitySchema,
+    bengaluru: connectivitySchema,
+    salem: connectivitySchema,
+    nearestHighway: z.string().optional(),
+    nearestRailway: z.string().optional(),
+  }),
+  images: z.array(propertyImageSchema),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+
+export type Property = z.infer<typeof propertySchema>;
 
 // Sample Properties Data
-export const properties: Property[] = [
+const propertiesData: Property[] = [
   {
     id: "prop-001",
     slug: "arunachala-view-agricultural-land",
@@ -391,3 +395,5 @@ export const getFilteredProperties = (filters: {
     return true;
   });
 };
+
+export const properties: Property[] = propertySchema.array().parse(propertiesData);

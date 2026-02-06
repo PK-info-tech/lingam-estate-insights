@@ -373,6 +373,7 @@
     "progress": "Buyer Interest",
     "region": "Region",
     "area": "Land Area",
+    "verificationStatus": "Verification Status",
     "listed": "Listed",
     "notFound": "Property not found",
     "backToCollection": "View All Properties",

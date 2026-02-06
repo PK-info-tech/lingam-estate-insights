@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MapPin, Check } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Property } from "@/types/property";
+import { VerificationBadge } from "@/components/property/VerificationBadge";
+import type { Property } from "@/data/properties";
+
+const regionLabels: Record<string, { en: string; ta: string }> = {
+  thiruvannamalai: { en: "Thiruvannamalai", ta: "திருவண்ணாமலை" },
+  kallakurichi: { en: "Kallakurichi", ta: "கள்ளக்குறிச்சி" },
+  villupuram: { en: "Villupuram", ta: "விழுப்புரம்" },
+  sankarapuram: { en: "Sankarapuram", ta: "சங்கராபுரம்" },
+};
 
 interface PropertyCardProps {
   property: Property;
@@ -10,7 +18,9 @@ interface PropertyCardProps {
 }
 
 export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
+  const currentLang = i18n.language as "en" | "ta";
+  const heroImage = property.images[0];
 
   return (
     <motion.article
@@ -26,65 +36,50 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
       >
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-          <img
-            src={property.images[0] || "/placeholder.svg"}
-            alt={property.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          {/* Verification Badge */}
-          <div className="absolute top-4 right-4 flex gap-2">
-            {property.verification.patta && (
-              <span className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-medium text-foreground flex items-center gap-1.5">
-                <Check className="w-3 h-3 text-primary" />
-                {t("property.verified.patta")}
-              </span>
-            )}
+          {heroImage ? (
+            <img
+              src={heroImage.src}
+              alt={heroImage.alt[currentLang] || heroImage.alt.en}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <MapPin className="w-6 h-6 text-muted-foreground" />
+            </div>
+          )}
+          <div className="absolute top-4 right-4">
+            <VerificationBadge status={property.verification} size="sm" showLabel={false} />
           </div>
         </div>
 
         {/* Content */}
         <div className="p-6">
-          {/* Location */}
+          {/* Region */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
             <MapPin className="w-4 h-4" />
             <span>
-              {t(`regions.${property.location.district.toLowerCase()}.name`)}, {property.location.taluk}
+              {regionLabels[property.region]?.[currentLang] || property.region}
             </span>
           </div>
 
           {/* Title */}
           <h3 className="heading-tertiary text-foreground mb-3 group-hover:text-primary transition-colors">
-            {property.title}
+            {property.title[currentLang] || property.title.en}
           </h3>
 
-          {/* Size & Type */}
+          {/* Tagline */}
+          <p className="text-sm text-foreground/70 mb-4 line-clamp-2">
+            {property.tagline[currentLang] || property.tagline.en}
+          </p>
+
+          {/* Size & Verification */}
           <div className="flex items-center gap-4 mb-4 text-sm text-foreground/60">
             <span>
-              {property.size.acres} {t("property.acres")} ({property.size.cents} {t("property.cents")})
+              {property.area.value} {property.area.unit}
             </span>
             <span className="text-muted-foreground">·</span>
-            <span className="capitalize">{t(`search.types.${property.landType}`)}</span>
-          </div>
-
-          {/* Ideal For */}
-          <div className="mb-4">
-            <p className="text-sm text-muted-foreground mb-2">{t("property.idealFor")}:</p>
-            <div className="flex flex-wrap gap-2">
-              {property.idealFor.slice(0, 2).map((use, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 bg-secondary text-foreground/70 rounded-full text-xs"
-                >
-                  {use}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Price */}
-          <div className="pt-4 border-t border-border">
-            <p className="text-sm text-muted-foreground mb-1">{t("property.price")}</p>
-            <p className="text-lg font-medium text-foreground">{property.priceDisplay}</p>
+            <VerificationBadge status={property.verification} size="sm" />
           </div>
 
           {/* CTA */}
@@ -98,6 +93,5 @@ export const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
     </motion.article>
   );
 };
-
 
 

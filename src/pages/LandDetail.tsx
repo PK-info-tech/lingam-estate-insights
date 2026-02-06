@@ -1,15 +1,27 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPin, Check, Calendar, FileText } from "lucide-react";
+import { ArrowLeft, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
-import { BrokerComparison } from "@/components/lands/BrokerComparison";
 import { getPropertyBySlug } from "@/data/properties";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  PropertyTabs,
+  PropertyMap,
+  PropertyCTA,
+  VerificationBadge,
+} from "@/components/property";
+
+const regionLabels: Record<string, { en: string; ta: string }> = {
+  thiruvannamalai: { en: "Thiruvannamalai", ta: "திருவண்ணாமலை" },
+  kallakurichi: { en: "Kallakurichi", ta: "கள்ளக்குறிச்சி" },
+  villupuram: { en: "Villupuram", ta: "விழுப்புரம்" },
+  sankarapuram: { en: "Sankarapuram", ta: "சங்கராபுரம்" },
+};
 
 const LandDetail = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language as "en" | "ta";
   const { slug } = useParams<{ slug: string }>();
   const property = slug ? getPropertyBySlug(slug) : null;
 
@@ -29,12 +41,13 @@ const LandDetail = () => {
     );
   }
 
+  const title = property.title[currentLang] || property.title.en;
+  const description = property.overview[currentLang] || property.overview.en;
+  const heroImage = property.images[0];
+
   return (
     <Layout>
-      <SEO
-        title={`${property.title} | Lingam Estate`}
-        description={`${property.title} - ${property.size.acres} acres in ${property.location.district}`}
-      />
+      <SEO title={`${title} | Lingam Estate`} description={description} />
 
       {/* Header */}
       <section className="pt-32 pb-12 bg-background">
@@ -54,7 +67,7 @@ const LandDetail = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Column - Details */}
+            {/* Left Column */}
             <div className="lg:col-span-7 space-y-12">
               {/* Hero Image */}
               <motion.div
@@ -63,14 +76,18 @@ const LandDetail = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="aspect-[4/3] overflow-hidden rounded-lg bg-secondary"
               >
-                <img
-                  src={property.images[0] || "/placeholder.svg"}
-                  alt={property.title}
-                  className="w-full h-full object-cover"
-                />
+                {heroImage ? (
+                  <img
+                    src={heroImage.src}
+                    alt={heroImage.alt[currentLang] || heroImage.alt.en}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-secondary" />
+                )}
               </motion.div>
 
-              {/* Title & Location */}
+              {/* Title & Region */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -78,18 +95,12 @@ const LandDetail = () => {
               >
                 <div className="flex items-center gap-2 text-muted-foreground mb-4">
                   <MapPin className="w-4 h-4" />
-                  <span>
-                    {t(`regions.${property.location.district.toLowerCase()}.name`)}, {property.location.taluk}
-                  </span>
+                  <span>{regionLabels[property.region]?.[currentLang] || property.region}</span>
                 </div>
-                <h1 className="heading-display text-foreground mb-4">{property.title}</h1>
-                <div className="flex items-center gap-4 text-foreground/60">
-                  <span>
-                    {property.size.acres} {t("property.acres")} ({property.size.cents} {t("property.cents")})
-                  </span>
-                  <span>·</span>
-                  <span className="capitalize">{t(`search.types.${property.landType}`)}</span>
-                </div>
+                <h1 className="heading-display text-foreground mb-4">{title}</h1>
+                <p className="body-large text-foreground/70">
+                  {property.tagline[currentLang] || property.tagline.en}
+                </p>
               </motion.div>
 
               {/* Tabs */}
@@ -98,189 +109,44 @@ const LandDetail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <Tabs defaultValue="details" className="w-full">
-                  <TabsList className="grid w-full grid-cols-4 mb-8">
-                    <TabsTrigger value="details">{t("property.tabs.details")}</TabsTrigger>
-                    <TabsTrigger value="legal">{t("property.tabs.legal")}</TabsTrigger>
-                    <TabsTrigger value="location">{t("property.tabs.location")}</TabsTrigger>
-                    <TabsTrigger value="thesis">{t("property.tabs.thesis")}</TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="details" className="space-y-6">
-                    <div>
-                      <h3 className="heading-tertiary text-foreground mb-4">{t("property.overview")}</h3>
-                      <ul className="space-y-3 text-foreground/70">
-                        <li className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span><strong>{t("property.accessRoad")}:</strong> {property.details.accessRoad}</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span><strong>{t("property.water")}:</strong> {property.details.water}</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span><strong>{t("property.electricity")}:</strong> {property.details.electricity}</span>
-                        </li>
-                        {property.details.distanceToTemple && (
-                          <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span><strong>{t("property.distanceToTemple")}:</strong> {property.details.distanceToTemple} km</span>
-                          </li>
-                        )}
-                        {property.details.distanceToHighway && (
-                          <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span><strong>{t("property.distanceToHighway")}:</strong> {property.details.distanceToHighway} km</span>
-                          </li>
-                        )}
-                        {property.details.distanceToTown && (
-                          <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span><strong>{t("property.distanceToTown")}:</strong> {property.details.distanceToTown} km</span>
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h3 className="heading-tertiary text-foreground mb-4">{t("property.idealFor")}</h3>
-                      <div className="flex flex-wrap gap-3">
-                        {property.idealFor.map((use, i) => (
-                          <span
-                            key={i}
-                            className="px-4 py-2 bg-secondary text-foreground rounded-md text-sm"
-                          >
-                            {use}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="legal" className="space-y-6">
-                    <div>
-                      <h3 className="heading-tertiary text-foreground mb-4">{t("property.legal.title")}</h3>
-                      <p className="text-foreground/70 mb-4">{property.legal.title}</p>
-                      {property.legal.conversionStatus && (
-                        <p className="text-foreground/70 mb-4">{property.legal.conversionStatus}</p>
-                      )}
-                      {property.verification.patta && (
-                        <div className="flex items-center gap-2 text-sm text-foreground/70 mb-2">
-                          <Check className="w-4 h-4 text-primary" />
-                          {t("property.verified.patta")}
-                        </div>
-                      )}
-                      {property.verification.encumbrance === false && (
-                        <div className="flex items-center gap-2 text-sm text-foreground/70 mb-2">
-                          <Check className="w-4 h-4 text-primary" />
-                          {t("property.verified.noEncumbrance")}
-                        </div>
-                      )}
-                      {property.verification.surveyed && (
-                        <div className="flex items-center gap-2 text-sm text-foreground/70">
-                          <Check className="w-4 h-4 text-primary" />
-                          {t("property.verified.surveyed")}
-                        </div>
-                      )}
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="location" className="space-y-6">
-                    <div>
-                      <h3 className="heading-tertiary text-foreground mb-4">{t("property.connectivity")}</h3>
-                      <ul className="space-y-3 text-foreground/70">
-                        {property.connectivity.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="thesis" className="space-y-6">
-                    <div>
-                      <h3 className="heading-tertiary text-foreground mb-4">{t("property.investmentThesis")}</h3>
-                      <ul className="space-y-3 text-foreground/70">
-                        {property.investmentThesis.map((point, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </TabsContent>
-                </Tabs>
+                <PropertyTabs property={property} />
               </motion.div>
             </div>
 
-            {/* Right Column - Comparison & Action */}
-            <div className="lg:col-span-5 space-y-8">
-              {/* Comparison Table */}
+            {/* Right Column */}
+            <div className="lg:col-span-5">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
+                className="sticky top-32 space-y-8"
               >
-                <BrokerComparison variant="full" />
-              </motion.div>
-
-              {/* Action Panel */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-secondary/50 rounded-lg border border-border p-8 space-y-6"
-              >
-                <div>
-                  <h3 className="heading-tertiary text-foreground mb-2">{t("property.price")}</h3>
-                  <p className="text-2xl font-medium text-foreground mb-4">{property.priceDisplay}</p>
-                </div>
-
-                <div className="space-y-4">
-                  <Link
-                    to="/contact"
-                    className="w-full btn-primary flex items-center justify-center gap-2"
-                  >
-                    <Calendar className="w-5 h-5" />
-                    {t("property.cta.visit")}
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="w-full btn-outline flex items-center justify-center gap-2"
-                  >
-                    <FileText className="w-5 h-5" />
-                    {t("property.cta.documents")}
-                  </Link>
-                </div>
-
-                {/* Trust Signals */}
-                <div className="pt-6 border-t border-border space-y-3">
-                  <p className="text-sm font-medium text-foreground mb-3">{t("property.trust.title")}</p>
-                  <div className="space-y-2 text-sm text-foreground/70">
-                    <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-primary" />
-                      {t("property.trust.rera")}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-primary" />
-                      {t("property.trust.legal")}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-primary" />
-                      {t("property.trust.surveyor")}
-                    </div>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-4 italic">
-                    {t("property.trust.tagline")}
+                <div className="bg-secondary/50 rounded-lg border border-border p-8">
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {t("property.verificationStatus")}
                   </p>
+                  <VerificationBadge status={property.verification} size="sm" />
+                  <div className="mt-6 text-sm text-foreground/70">
+                    {t("property.area")}: {property.area.value} {property.area.unit}
+                  </div>
                 </div>
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="section-padding-sm border-t border-border">
+        <div className="container-luxury">
+          <PropertyMap property={property} />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding border-t border-border">
+        <div className="container-luxury">
+          <PropertyCTA propertyTitle={title} />
         </div>
       </section>
     </Layout>
@@ -288,6 +154,3 @@ const LandDetail = () => {
 };
 
 export default LandDetail;
-
-
-

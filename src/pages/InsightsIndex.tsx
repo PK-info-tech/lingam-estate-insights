@@ -7,31 +7,11 @@ import { Layout } from "@/components/layout";
 import { SEO } from "@/components/SEO";
 import { usePathname } from "next/navigation";
 import { absoluteUrl, buildBreadcrumbList, SITE_NAME } from "@/lib/seo";
-
-interface InsightArticle {
-  slug: string;
-  date: string;
-  readTime: string;
-}
+import { insights } from "@/data/insights";
 
 const InsightsIndex = () => {
   const { t } = useTranslation();
   const pathname = usePathname();
-  
-  const articles: InsightArticle[] = [
-    { slug: "chennai-bengaluru-corridor-impact", date: "2025-01-15", readTime: "8 min read" },
-    { slug: "agricultural-land-conversion-guide", date: "2024-12-20", readTime: "12 min read" },
-    { slug: "logistics-warehousing-opportunity", date: "2024-11-28", readTime: "10 min read" },
-    { slug: "title-verification-essentials", date: "2024-10-15", readTime: "15 min read" },
-    { slug: "patta-chitta-ec-checklist-thiruvannamalai", date: "2025-02-01", readTime: "11 min read" },
-    { slug: "kallakurichi-industrial-logistics-map", date: "2025-02-03", readTime: "10 min read" },
-    { slug: "water-and-borewell-arunachala-belt", date: "2025-02-05", readTime: "9 min read" },
-    { slug: "temple-view-legal-guardrails", date: "2025-02-07", readTime: "8 min read" },
-    { slug: "nri-playbook-tn-land", date: "2025-02-09", readTime: "9 min read" },
-    { slug: "agri-to-industrial-kallakurichi-timeline", date: "2025-02-11", readTime: "10 min read" },
-    { slug: "nh77-nh79-road-projects-thiruvannamalai", date: "2025-02-13", readTime: "8 min read" },
-    { slug: "title-defects-we-blocked-thiruvannamalai", date: "2025-02-15", readTime: "9 min read" },
-  ];
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -61,7 +41,7 @@ const InsightsIndex = () => {
             url: absoluteUrl(pathname),
             mainEntity: {
               "@type": "ItemList",
-              itemListElement: articles.map((article, index) => ({
+              itemListElement: insights.map((article, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
                 url: absoluteUrl(`/insights/${article.slug}`),
@@ -96,7 +76,7 @@ const InsightsIndex = () => {
       <section className="section-padding-sm bg-background border-t border-border">
         <div className="container-luxury">
           <div className="max-w-3xl mx-auto space-y-16">
-            {articles.map((article, index) => (
+            {insights.map((article, index) => (
               <motion.article
                 key={article.slug}
                 initial={{ opacity: 0, y: 30 }}
@@ -108,17 +88,17 @@ const InsightsIndex = () => {
                   className="block group"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="caption text-primary">{t(`insights.articles.${article.slug}.category`)}</span>
+                    <span className="caption text-primary">{article.category}</span>
                     <span className="text-muted-foreground text-sm">·</span>
                     <span className="text-muted-foreground text-sm">{article.readTime}</span>
                   </div>
 
                   <h2 className="font-display text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors duration-300 mb-4">
-                    {t(`insights.articles.${article.slug}.title`)}
+                    {article.title}
                   </h2>
 
                   <p className="text-foreground/60 leading-relaxed mb-4">
-                    {t(`insights.articles.${article.slug}.excerpt`)}
+                    {article.excerpt}
                   </p>
 
                   <time className="text-sm text-muted-foreground">

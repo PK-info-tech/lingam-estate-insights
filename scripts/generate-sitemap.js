@@ -6,7 +6,7 @@ const today = new Date().toISOString().slice(0, 10);
 
 const workspaceRoot = process.cwd();
 const propertiesPath = path.join(workspaceRoot, "src", "data", "properties.ts");
-const insightsPath = path.join(workspaceRoot, "src", "pages", "InsightsIndex.tsx");
+const insightsPath = path.join(workspaceRoot, "src", "data", "insights.ts");
 const outputPath = path.join(workspaceRoot, "public", "sitemap.xml");
 
 const readFile = (filePath) => fs.readFileSync(filePath, "utf8");

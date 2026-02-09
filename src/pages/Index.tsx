@@ -9,6 +9,7 @@ import {
   RegionHighlightsSection,
   CapabilitiesSection,
   ProcessSection,
+  CarbonAggregationSection,
   CTASection,
 } from "@/components/home";
 import { BrokerComparison } from "@/components/lands";
@@ -51,6 +52,7 @@ const Index = () => {
       <RegionHighlightsSection />
       <RegionsSection />
       <CapabilitiesSection />
+      <CarbonAggregationSection />
       <ProcessSection />
       <CTASection />
     </Layout>

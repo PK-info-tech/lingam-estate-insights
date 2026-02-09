@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lingamestate.com/</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/properties</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -38,39 +38,93 @@
   </url>
   <url>
     <loc>https://lingamestate.com/regions</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/regions/thiruvannamalai</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/regions/kallakurichi</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/regions/villupuram</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/regions/sankarapuram</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/insights</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/do-you-own-forest-or-farmland</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/selling-carbon-credits-what-registries-require</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/how-companies-procure-carbon-credits</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/how-carbon-aggregation-works</loc>
+    <lastmod>2026-02-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/timeline-to-issuance-for-landholders</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/carbon-aggregation-verification-chain</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/mrv-evidence-first-rural</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/buffer-pools-reversal-lag</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lingamestate.com/insights/double-counting-prevention-aggregation</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/insights/chennai-bengaluru-corridor-impact</loc>
@@ -145,14 +199,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://lingamestate.com/carbon</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://lingamestate.com/about</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://lingamestate.com/contact</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

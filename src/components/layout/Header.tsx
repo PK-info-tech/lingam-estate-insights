@@ -19,6 +19,7 @@ export const Header = () => {
     { labelKey: "nav.properties", href: "/properties" },
     { labelKey: "nav.regions", href: "/regions" },
     { labelKey: "nav.insights", href: "/insights" },
+    { labelKey: "nav.carbon", href: "/carbon" },
     { labelKey: "nav.about", href: "/about" },
   ];
 

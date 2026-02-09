@@ -5,4 +5,5 @@ export { RegionHighlightsSection } from "./RegionHighlightsSection";
 export { RegionImageSlider } from "./RegionImageSlider";
 export { CapabilitiesSection } from "./CapabilitiesSection";
 export { ProcessSection } from "./ProcessSection";
+export { CarbonAggregationSection } from "./CarbonAggregationSection";
 export { CTASection } from "./CTASection";

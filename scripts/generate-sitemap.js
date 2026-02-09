@@ -68,6 +68,7 @@ const urls = [
     changefreq: "monthly",
     priority: "0.6",
   })),
+  { loc: `${SITE_URL}/carbon`, lastmod: today, changefreq: "monthly", priority: "0.7" },
   { loc: `${SITE_URL}/about`, lastmod: today, changefreq: "yearly", priority: "0.6" },
   { loc: `${SITE_URL}/contact`, lastmod: today, changefreq: "yearly", priority: "0.6" },
 ];

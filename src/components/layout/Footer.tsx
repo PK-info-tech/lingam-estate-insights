@@ -16,6 +16,7 @@ export const Footer = () => {
     company: [
       { labelKey: "nav.about", href: "/about" },
       { labelKey: "nav.insights", href: "/insights" },
+      { labelKey: "nav.carbon", href: "/carbon" },
       { labelKey: "nav.contact", href: "/contact" },
     ],
   };
